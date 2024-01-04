@@ -10,6 +10,16 @@
 		9AFA3EAF2B474ECA001546EB /* Repository.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AFA3EA62B474ECA001546EB /* Repository.framework */; };
 		9AFA3EB42B474ECA001546EB /* RepositoryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AFA3EB32B474ECA001546EB /* RepositoryTests.swift */; };
 		9AFA3EB52B474ECA001546EB /* Repository.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AFA3EA92B474ECA001546EB /* Repository.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		9AFA3EBF2B474F5E001546EB /* Repository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AFA3EBE2B474F5E001546EB /* Repository.swift */; };
+		9AFA3ECA2B474FAF001546EB /* APIRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AFA3EC92B474FAF001546EB /* APIRequest.swift */; };
+		9AFA3ECC2B47506A001546EB /* DefaultRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AFA3ECB2B47506A001546EB /* DefaultRepository.swift */; };
+		9AFA3ED12B4750BB001546EB /* DataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AFA3ED02B4750BB001546EB /* DataSource.swift */; };
+		9AFA3ED32B4750D3001546EB /* RemoteDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AFA3ED22B4750D3001546EB /* RemoteDataSource.swift */; };
+		9AFA3ED52B4750E8001546EB /* DefaultRemoteDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AFA3ED42B4750E8001546EB /* DefaultRemoteDataSource.swift */; };
+		9AFA3ED72B47511A001546EB /* LocalDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AFA3ED62B47511A001546EB /* LocalDataSource.swift */; };
+		9AFA3ED92B47512A001546EB /* DefaultLocalDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AFA3ED82B47512A001546EB /* DefaultLocalDataSource.swift */; };
+		9AFA3EDB2B47515B001546EB /* DefaultCacheRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AFA3EDA2B47515B001546EB /* DefaultCacheRepository.swift */; };
+		9AFA3EDD2B475176001546EB /* CachePolicy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AFA3EDC2B475176001546EB /* CachePolicy.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -27,6 +37,16 @@
 		9AFA3EA92B474ECA001546EB /* Repository.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Repository.h; sourceTree = "<group>"; };
 		9AFA3EAE2B474ECA001546EB /* RepositoryTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RepositoryTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		9AFA3EB32B474ECA001546EB /* RepositoryTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositoryTests.swift; sourceTree = "<group>"; };
+		9AFA3EBE2B474F5E001546EB /* Repository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Repository.swift; sourceTree = "<group>"; };
+		9AFA3EC92B474FAF001546EB /* APIRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIRequest.swift; sourceTree = "<group>"; };
+		9AFA3ECB2B47506A001546EB /* DefaultRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultRepository.swift; sourceTree = "<group>"; };
+		9AFA3ED02B4750BB001546EB /* DataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataSource.swift; sourceTree = "<group>"; };
+		9AFA3ED22B4750D3001546EB /* RemoteDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteDataSource.swift; sourceTree = "<group>"; };
+		9AFA3ED42B4750E8001546EB /* DefaultRemoteDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultRemoteDataSource.swift; sourceTree = "<group>"; };
+		9AFA3ED62B47511A001546EB /* LocalDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalDataSource.swift; sourceTree = "<group>"; };
+		9AFA3ED82B47512A001546EB /* DefaultLocalDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultLocalDataSource.swift; sourceTree = "<group>"; };
+		9AFA3EDA2B47515B001546EB /* DefaultCacheRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultCacheRepository.swift; sourceTree = "<group>"; };
+		9AFA3EDC2B475176001546EB /* CachePolicy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CachePolicy.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -69,7 +89,13 @@
 		9AFA3EA82B474ECA001546EB /* Repository */ = {
 			isa = PBXGroup;
 			children = (
+				9AFA3EC82B474FA4001546EB /* APIs */,
 				9AFA3EA92B474ECA001546EB /* Repository.h */,
+				9AFA3EBE2B474F5E001546EB /* Repository.swift */,
+				9AFA3ECB2B47506A001546EB /* DefaultRepository.swift */,
+				9AFA3EDC2B475176001546EB /* CachePolicy.swift */,
+				9AFA3EDA2B47515B001546EB /* DefaultCacheRepository.swift */,
+				9AFA3ECD2B475092001546EB /* Data Sources */,
 			);
 			path = Repository;
 			sourceTree = "<group>";
@@ -80,6 +106,42 @@
 				9AFA3EB32B474ECA001546EB /* RepositoryTests.swift */,
 			);
 			path = RepositoryTests;
+			sourceTree = "<group>";
+		};
+		9AFA3EC82B474FA4001546EB /* APIs */ = {
+			isa = PBXGroup;
+			children = (
+				9AFA3EC92B474FAF001546EB /* APIRequest.swift */,
+			);
+			path = APIs;
+			sourceTree = "<group>";
+		};
+		9AFA3ECD2B475092001546EB /* Data Sources */ = {
+			isa = PBXGroup;
+			children = (
+				9AFA3ED02B4750BB001546EB /* DataSource.swift */,
+				9AFA3ECE2B4750A2001546EB /* Remote Data Source */,
+				9AFA3ECF2B4750AC001546EB /* Local Data Source */,
+			);
+			path = "Data Sources";
+			sourceTree = "<group>";
+		};
+		9AFA3ECE2B4750A2001546EB /* Remote Data Source */ = {
+			isa = PBXGroup;
+			children = (
+				9AFA3ED22B4750D3001546EB /* RemoteDataSource.swift */,
+				9AFA3ED42B4750E8001546EB /* DefaultRemoteDataSource.swift */,
+			);
+			path = "Remote Data Source";
+			sourceTree = "<group>";
+		};
+		9AFA3ECF2B4750AC001546EB /* Local Data Source */ = {
+			isa = PBXGroup;
+			children = (
+				9AFA3ED62B47511A001546EB /* LocalDataSource.swift */,
+				9AFA3ED82B47512A001546EB /* DefaultLocalDataSource.swift */,
+			);
+			path = "Local Data Source";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -144,6 +206,7 @@
 				TargetAttributes = {
 					9AFA3EA52B474ECA001546EB = {
 						CreatedOnToolsVersion = 15.0;
+						LastSwiftMigration = 1500;
 					};
 					9AFA3EAD2B474ECA001546EB = {
 						CreatedOnToolsVersion = 15.0;
@@ -191,6 +254,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9AFA3EDB2B47515B001546EB /* DefaultCacheRepository.swift in Sources */,
+				9AFA3ECC2B47506A001546EB /* DefaultRepository.swift in Sources */,
+				9AFA3ED32B4750D3001546EB /* RemoteDataSource.swift in Sources */,
+				9AFA3ED92B47512A001546EB /* DefaultLocalDataSource.swift in Sources */,
+				9AFA3ED52B4750E8001546EB /* DefaultRemoteDataSource.swift in Sources */,
+				9AFA3ED72B47511A001546EB /* LocalDataSource.swift in Sources */,
+				9AFA3ECA2B474FAF001546EB /* APIRequest.swift in Sources */,
+				9AFA3ED12B4750BB001546EB /* DataSource.swift in Sources */,
+				9AFA3EDD2B475176001546EB /* CachePolicy.swift in Sources */,
+				9AFA3EBF2B474F5E001546EB /* Repository.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -341,6 +414,7 @@
 		9AFA3EB92B474ECA001546EB /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEFINES_MODULE = YES;
@@ -363,6 +437,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -371,6 +446,7 @@
 		9AFA3EBA2B474ECA001546EB /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEFINES_MODULE = YES;
@@ -401,6 +477,7 @@
 		9AFA3EBC2B474ECA001546EB /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -416,6 +493,7 @@
 		9AFA3EBD2B474ECA001546EB /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				GENERATE_INFOPLIST_FILE = YES;
