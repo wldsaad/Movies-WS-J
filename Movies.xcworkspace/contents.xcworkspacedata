@@ -10,4 +10,11 @@
    <FileRef
       location = "group:Repository/Repository.xcodeproj">
    </FileRef>
+   <Group
+      location = "container:"
+      name = "Data Sources">
+      <FileRef
+         location = "group:URLSessionDataSource/URLSessionDataSource.xcodeproj">
+      </FileRef>
+   </Group>
 </Workspace>

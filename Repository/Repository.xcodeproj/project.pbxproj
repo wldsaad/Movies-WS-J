@@ -20,6 +20,8 @@
 		9AFA3ED92B47512A001546EB /* DefaultLocalDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AFA3ED82B47512A001546EB /* DefaultLocalDataSource.swift */; };
 		9AFA3EDB2B47515B001546EB /* DefaultCacheRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AFA3EDA2B47515B001546EB /* DefaultCacheRepository.swift */; };
 		9AFA3EDD2B475176001546EB /* CachePolicy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AFA3EDC2B475176001546EB /* CachePolicy.swift */; };
+		9AFA3F062B4762F4001546EB /* URLSessionDataSource.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AFA3F052B4762F4001546EB /* URLSessionDataSource.framework */; };
+		9AFA3F072B4762F4001546EB /* URLSessionDataSource.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 9AFA3F052B4762F4001546EB /* URLSessionDataSource.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -31,6 +33,20 @@
 			remoteInfo = Repository;
 		};
 /* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		9AFA3F082B4762F4001546EB /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				9AFA3F072B4762F4001546EB /* URLSessionDataSource.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		9AFA3EA62B474ECA001546EB /* Repository.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Repository.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -47,6 +63,7 @@
 		9AFA3ED82B47512A001546EB /* DefaultLocalDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultLocalDataSource.swift; sourceTree = "<group>"; };
 		9AFA3EDA2B47515B001546EB /* DefaultCacheRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultCacheRepository.swift; sourceTree = "<group>"; };
 		9AFA3EDC2B475176001546EB /* CachePolicy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CachePolicy.swift; sourceTree = "<group>"; };
+		9AFA3F052B4762F4001546EB /* URLSessionDataSource.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = URLSessionDataSource.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -54,6 +71,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9AFA3F062B4762F4001546EB /* URLSessionDataSource.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -74,6 +92,7 @@
 				9AFA3EA82B474ECA001546EB /* Repository */,
 				9AFA3EB22B474ECA001546EB /* RepositoryTests */,
 				9AFA3EA72B474ECA001546EB /* Products */,
+				9AFA3F042B4762F4001546EB /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -144,6 +163,14 @@
 			path = "Local Data Source";
 			sourceTree = "<group>";
 		};
+		9AFA3F042B4762F4001546EB /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				9AFA3F052B4762F4001546EB /* URLSessionDataSource.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
@@ -166,6 +193,7 @@
 				9AFA3EA22B474ECA001546EB /* Sources */,
 				9AFA3EA32B474ECA001546EB /* Frameworks */,
 				9AFA3EA42B474ECA001546EB /* Resources */,
+				9AFA3F082B4762F4001546EB /* Embed Frameworks */,
 			);
 			buildRules = (
 			);

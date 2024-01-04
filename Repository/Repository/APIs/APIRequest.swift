@@ -19,3 +19,13 @@ public enum APIRequestMethod: String {
 
     case get, post, put, patch, delete
 }
+
+public extension APIRequest {
+    
+    var urlRequest: URLRequest {
+        var request = URLRequest(url: baseURL.appending(path: path))
+        request.httpMethod = method.rawValue.uppercased()
+        headers?.forEach { request.setValue($0.value, forHTTPHeaderField: $0.key) }
+        return request
+    }
+}

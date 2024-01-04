@@ -6,9 +6,14 @@
 //
 
 import Foundation
+import URLSessionDataSource
 
 public struct DefaultRemoteDataSource: RemoteDataSource {
 
+    // MARK: - Properties
+    
+    private let urlSessionDataSource = URLSessionDataSource()
+    
     // MARK: - Init
     
     public init() {}
@@ -16,6 +21,6 @@ public struct DefaultRemoteDataSource: RemoteDataSource {
     // MARK: - APIs
     
     public mutating func getData<Value: Codable>(api: APIRequest) async throws -> Value {
-        fatalError("Implement remote data source!")
+        try await urlSessionDataSource.getData(urlRequest: api.urlRequest)
     }
 }
