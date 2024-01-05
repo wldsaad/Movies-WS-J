@@ -11,6 +11,7 @@
 		9AFA3EF82B47543D001546EB /* URLSessionDataSourceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AFA3EF72B47543D001546EB /* URLSessionDataSourceTests.swift */; };
 		9AFA3EF92B47543D001546EB /* URLSessionDataSource.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AFA3EED2B47543D001546EB /* URLSessionDataSource.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		9AFA3F032B475FC6001546EB /* URLSessionDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AFA3F022B475FC6001546EB /* URLSessionDataSource.swift */; };
+		9AFA3F2E2B47A189001546EB /* DefaultJsonDecoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AFA3F2D2B47A189001546EB /* DefaultJsonDecoder.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -29,6 +30,7 @@
 		9AFA3EF22B47543D001546EB /* URLSessionDataSourceTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = URLSessionDataSourceTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		9AFA3EF72B47543D001546EB /* URLSessionDataSourceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLSessionDataSourceTests.swift; sourceTree = "<group>"; };
 		9AFA3F022B475FC6001546EB /* URLSessionDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLSessionDataSource.swift; sourceTree = "<group>"; };
+		9AFA3F2D2B47A189001546EB /* DefaultJsonDecoder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultJsonDecoder.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -73,6 +75,7 @@
 			children = (
 				9AFA3EED2B47543D001546EB /* URLSessionDataSource.h */,
 				9AFA3F022B475FC6001546EB /* URLSessionDataSource.swift */,
+				9AFA3F2D2B47A189001546EB /* DefaultJsonDecoder.swift */,
 			);
 			path = URLSessionDataSource;
 			sourceTree = "<group>";
@@ -195,6 +198,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9AFA3F2E2B47A189001546EB /* DefaultJsonDecoder.swift in Sources */,
 				9AFA3F032B475FC6001546EB /* URLSessionDataSource.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

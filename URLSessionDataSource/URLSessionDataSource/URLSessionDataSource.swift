@@ -15,6 +15,6 @@ public struct URLSessionDataSource {
     
     public func getData<Value: Codable>(urlRequest: URLRequest) async throws -> Value {
         let (data, _) = try await urlSession.data(for: urlRequest)
-        return try JSONDecoder().decode(Value.self, from: data)
+        return try DefaultJsonDecoder().decode(Value.self, from: data)
     }
 }
