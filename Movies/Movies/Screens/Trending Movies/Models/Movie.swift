@@ -10,7 +10,7 @@ import SwiftData
 import Domain
 
 @Model
-final class Movie {
+final class Movie: Equatable, Hashable, Identifiable {
     
     // MARK: - Properties
     
@@ -18,13 +18,15 @@ final class Movie {
     let title: String
     let image: String
     let releaseDate: String
+    let genreIds: [Int]
     
     // MARK: - Init
     
-    init(title: String, image: String, releaseDate: String) {
+    init(title: String, image: String, releaseDate: String, genreIds: [Int]) {
         self.title = title
         self.image = image
         self.releaseDate = releaseDate
+        self.genreIds = genreIds
     }
     
     init(movie: TrendingMovie) {
@@ -39,5 +41,14 @@ final class Movie {
             
             return ""
         }()
+        genreIds = movie.genreIds ?? []
+    }
+    
+    static func == (lhs: Movie, rhs: Movie) -> Bool {
+        lhs.id == rhs.id
+    }
+    
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(id)
     }
 }

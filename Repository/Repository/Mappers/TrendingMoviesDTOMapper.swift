@@ -26,7 +26,8 @@ struct TrendingMoviesDTOMapper {
         let movies: [TrendingMovie] = response.results?.compactMap { .init(
             title: $0.title,
             image: backdropImagePath($0.backdropPath),
-            releaseDate: $0.releaseDate)
+            releaseDate: $0.releaseDate,
+            genreIds: $0.genreIds)
         } ?? []
         
         let pagination = Pagination(page: response.page, totalPages: response.totalPages, totalResults: response.totalResults)

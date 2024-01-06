@@ -49,6 +49,27 @@ class TrendingMoviesViewModel: TrendingMoviesViewModelProtocol {
     private var movieGenresUseCase: MovieGenresUseCase
 
     private var isLoading = false
+
+    private var selectedGenreIds: [Int] {
+        genres.filter { $0.selected }.map { $0.id }
+    }
+    
+    private var filteredMovies: [Movie] {
+        let selectedGenreIds = Set(selectedGenreIds)
+        
+        if searchValue.isEmpty, selectedGenreIds.isEmpty { return allMovies }
+        
+        return allMovies.filter { movie in
+            let searchPredicate: Bool = {
+                if searchValue.isEmpty { return true }
+                return movie.title.localizedStandardContains(searchValue)
+            }()
+            
+            let genrePredicate = !Set(selectedGenreIds).isDisjoint(with: Set(movie.genreIds))
+            
+            return searchPredicate && genrePredicate
+        }
+    }
     
     private var searchValueCancellable = Set<AnyCancellable>()
 
@@ -67,7 +88,7 @@ class TrendingMoviesViewModel: TrendingMoviesViewModelProtocol {
             .removeDuplicates()
             .debounce(for: .seconds(0.5), scheduler: DispatchQueue.main)
             .sink(receiveValue: { [weak self] value in
-                self?.didChangeSearch(value)
+                self?.setFilteredMovies()
             })
             .store(in: &searchValueCancellable)
     }
@@ -75,13 +96,8 @@ class TrendingMoviesViewModel: TrendingMoviesViewModelProtocol {
     // MARK: - APIs
     
     func didTapGenre(_ genre: Genre) {
-        genres.forEach { currentGenre in
-            if genre == currentGenre {
-                currentGenre.selected.toggle()
-            } else {
-                currentGenre.selected = false
-            }
-        }
+        genre.selected.toggle()
+        setFilteredMovies()
     }
     
     func didReachMovie(_ movie: Movie) {
@@ -89,23 +105,10 @@ class TrendingMoviesViewModel: TrendingMoviesViewModelProtocol {
               let index = movies.firstIndex(of: movie),
               index >= movies.endIndex - 1,
               pagination.totalPages > pagination.page,
-              searchValue.isEmpty else { return }
+              searchValue.isEmpty,
+              selectedGenreIds.isEmpty else { return }
         
         getMovies()
-    }
-    
-    func didChangeSearch(_ search: String) {
-        guard !search.isEmpty else {
-            movies = allMovies
-            return
-        }
-        
-        let moviesPredicate = #Predicate<Movie> { movie in
-            movie.title.localizedLowercase.contains(search.localizedLowercase)
-        }
-        
-        let filteredMovies = try? allMovies.filter(moviesPredicate)
-        movies = filteredMovies ?? allMovies
     }
     
     // MARK: - Methods
@@ -144,5 +147,9 @@ class TrendingMoviesViewModel: TrendingMoviesViewModelProtocol {
                 }
             }
         }
+    }
+    
+    private func setFilteredMovies() {
+        movies = filteredMovies
     }
 }
