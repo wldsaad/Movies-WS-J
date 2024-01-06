@@ -15,6 +15,8 @@ protocol TrendingMoviesViewModelProtocol: ObservableObject {
     
     var movieGenresRequestStatus: RequestStatus { get }
     
+    var searchValue: String { get set }
+    
     var movies: [Movie] { get }
     
     var genres: [Genre] { get }
@@ -32,10 +34,14 @@ class TrendingMoviesViewModel: TrendingMoviesViewModelProtocol {
     
     @Published var genres: [Genre] = []
     
+    @Published var searchValue: String = ""
+    
     @Published var moviesRequestStatus: RequestStatus = .idle
     
     @Published var movieGenresRequestStatus: RequestStatus = .idle
     
+    private var allMovies: [Movie] = []
+
     private var pagination = Pagination()
     
     private var trendingMoviesUseCase: TrendingMoviesUseCase
@@ -44,6 +50,8 @@ class TrendingMoviesViewModel: TrendingMoviesViewModelProtocol {
 
     private var isLoading = false
     
+    private var searchValueCancellable = Set<AnyCancellable>()
+
     // MARK: - Init
     
     init(
@@ -54,6 +62,14 @@ class TrendingMoviesViewModel: TrendingMoviesViewModelProtocol {
         self.movieGenresUseCase = movieGenresUseCase
         getGenres()
         getMovies()
+        
+        $searchValue
+            .removeDuplicates()
+            .debounce(for: .seconds(0.5), scheduler: DispatchQueue.main)
+            .sink(receiveValue: { [weak self] value in
+                self?.didChangeSearch(value)
+            })
+            .store(in: &searchValueCancellable)
     }
     
     // MARK: - APIs
@@ -72,9 +88,24 @@ class TrendingMoviesViewModel: TrendingMoviesViewModelProtocol {
         guard moviesRequestStatus != .loading,
               let index = movies.firstIndex(of: movie),
               index >= movies.endIndex - 1,
-              pagination.totalPages > pagination.page else { return }
+              pagination.totalPages > pagination.page,
+              searchValue.isEmpty else { return }
         
         getMovies()
+    }
+    
+    func didChangeSearch(_ search: String) {
+        guard !search.isEmpty else {
+            movies = allMovies
+            return
+        }
+        
+        let moviesPredicate = #Predicate<Movie> { movie in
+            movie.title.localizedLowercase.contains(search.localizedLowercase)
+        }
+        
+        let filteredMovies = try? allMovies.filter(moviesPredicate)
+        movies = filteredMovies ?? allMovies
     }
     
     // MARK: - Methods
@@ -104,6 +135,7 @@ class TrendingMoviesViewModel: TrendingMoviesViewModelProtocol {
                 self.pagination = response.pagination
                 DispatchQueue.main.async { [weak self] in
                     self?.movies.append(contentsOf: response.movies.map(Movie.init))
+                    self?.allMovies = self?.movies ?? []
                     self?.moviesRequestStatus = .success
                 }
             } catch {

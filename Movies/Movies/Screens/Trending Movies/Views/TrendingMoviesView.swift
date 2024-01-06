@@ -11,7 +11,7 @@ struct TrendingMoviesView<ViewModel: TrendingMoviesViewModelProtocol>: View {
     
     @ObservedObject var viewModel: ViewModel
     
-    @State private var search = ""
+//    @State private var search = ""
     
     init(viewModel: ViewModel) {
         let appearance = UINavigationBarAppearance()
@@ -40,7 +40,7 @@ struct TrendingMoviesView<ViewModel: TrendingMoviesViewModelProtocol>: View {
                 }
             }
             .navigationTitle("Trending Movies")
-            .searchable(text: $search, placement: .navigationBarDrawer(displayMode: .always))
+            .searchable(text: $viewModel.searchValue, placement: .navigationBarDrawer(displayMode: .always))
             .navigationBarBackButtonHidden(true)
             .onReceive(moviesList.didReachMovie) { movie in
                 viewModel.didReachMovie(movie)
