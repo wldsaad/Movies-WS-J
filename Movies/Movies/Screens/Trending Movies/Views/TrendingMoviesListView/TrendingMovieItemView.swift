@@ -56,5 +56,5 @@ struct TrendingMovieItemView: View {
 }
 
 #Preview {
-    TrendingMovieItemView(movie: .init(title: "Fight Club", image: "https://picsum.photos/200", releaseDate: .init(), genreIds: []))
+    TrendingMovieItemView(movie: .init(movieId: 1, title: "Fight Club", image: "https://picsum.photos/200", releaseDate: .init(), genreIds: []))
 }

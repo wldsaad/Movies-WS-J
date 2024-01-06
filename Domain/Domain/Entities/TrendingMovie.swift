@@ -21,12 +21,14 @@ public struct TrendingMovies {
 
 public struct TrendingMovie {
     
+    public let id: Int
     public let title: String?
     public let image: String?
     public let releaseDate: Date?
     public let genreIds: [Int]?
 
-    public init(title: String?, image: String?, releaseDate: Date?, genreIds: [Int]?) {
+    public init(id: Int, title: String?, image: String?, releaseDate: Date?, genreIds: [Int]?) {
+        self.id = id
         self.title = title
         self.image = image
         self.releaseDate = releaseDate

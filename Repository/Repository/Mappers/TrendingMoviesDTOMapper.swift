@@ -23,7 +23,8 @@ struct TrendingMoviesDTOMapper {
     // MARK: - APIs
     
     func callAsFunction() -> TrendingMovies {
-        let movies: [TrendingMovie] = response.results?.compactMap { .init(
+        let movies: [TrendingMovie] = response.results?.filter { $0.id != nil }.compactMap { .init(
+            id: $0.id!,
             title: $0.title,
             image: backdropImagePath($0.backdropPath),
             releaseDate: $0.releaseDate,
