@@ -23,7 +23,7 @@ public struct DefaultTrendingMoviesRepository: TrendingMoviesRepository {
     // MARK: - APIs
     
     mutating public func execute(page: Int) async throws -> TrendingMovies {
-        let api = TrendingMoviesApi.getTrendingMovies(page: page)
+        let api = TrendingMoviesApi(page: page)
         let response: TrendingMoviesResponse = try await repository.getData(api: api, cachePolicy: .never)
         return TrendingMoviesDTOMapper(response: response)()
     }

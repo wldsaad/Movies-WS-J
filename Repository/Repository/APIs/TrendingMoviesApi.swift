@@ -7,33 +7,27 @@
 
 import Foundation
 
-enum TrendingMoviesApi {
+struct TrendingMoviesApi: APIRequest {
     
-    case getTrendingMovies(page: Int)
-}
-
-extension TrendingMoviesApi: APIRequest {
+    // MARK: - Properties
     
-    var path: String {
-        switch self {
-        case .getTrendingMovies: #"/discover/movie"#
-        }
-    }
+    let path = #"/discover/movie"#
     
-    var method: APIRequestMethod {
-        switch self {
-        case .getTrendingMovies: .get
-        }
-    }
+    let method: APIRequestMethod = .get
     
     var query: [String: String]? {
-        switch self {
-        case let .getTrendingMovies(page):
-            [
-                "include_adult": String(false),
-                "sort_by": "popularity.desc",
-                "page": String(page)
-            ]
-        }
+        [
+            "include_adult": String(false),
+            "sort_by": "popularity.desc",
+            "page": String(page)
+        ]
+    }
+    
+    private let page: Int
+    
+    // MARK: - Init
+    
+    init(page: Int) {
+        self.page = page
     }
 }
