@@ -60,12 +60,8 @@ class TrendingMoviesViewModel: TrendingMoviesViewModelProtocol {
         if searchValue.isEmpty, selectedGenreIds.isEmpty { return allMovies }
         
         return allMovies.filter { movie in
-            let searchPredicate: Bool = {
-                if searchValue.isEmpty { return true }
-                return movie.title.localizedStandardContains(searchValue)
-            }()
-            
-            let genrePredicate = !Set(selectedGenreIds).isDisjoint(with: Set(movie.genreIds))
+            let searchPredicate = searchValue.isEmpty ? true : movie.title.localizedStandardContains(searchValue)
+            let genrePredicate = selectedGenreIds.isEmpty ? true : !Set(selectedGenreIds).isDisjoint(with: Set(movie.genreIds))
             
             return searchPredicate && genrePredicate
         }
