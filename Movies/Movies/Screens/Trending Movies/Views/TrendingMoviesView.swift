@@ -14,26 +14,42 @@ struct TrendingMoviesView<ViewModel: TrendingMoviesViewModelProtocol>: View {
     @State private var search = ""
     
     init(viewModel: ViewModel) {
+        let appearance = UINavigationBarAppearance()
+        appearance.shadowColor = .clear
+        UINavigationBar.appearance().standardAppearance = appearance
+        UINavigationBar.appearance().scrollEdgeAppearance = appearance
+        UINavigationBar.appearance().compactAppearance = appearance
+        UINavigationBar.appearance().compactScrollEdgeAppearance = appearance
+        
         _viewModel = ObservedObject(wrappedValue: viewModel)
     }
-    
-    private let columns = (0..<2).map { _ in GridItem(.flexible()) }
-    
+        
     var body: some View {
+        let genresView = MovieGenresListView(genres: viewModel.genres)
+        let moviesList = TrendingMoviesListView(movies: viewModel.movies)
+
         NavigationStack {
             ScrollView {
-                LazyVGrid(columns: columns, spacing: 16) {
-                    ForEach(viewModel.movies) { movie in
-                        TrendingMovieItemView(movie: movie)
-                            .onAppear {
-                                viewModel.didReachMovie(movie)
-                            }
+                LazyVStack(pinnedViews: [.sectionHeaders]) {
+                    Section {
+                        moviesList
+                    } header: {
+                        genresView
+                            .background(.regularMaterial)
                     }
                 }
-                .padding()
             }
             .navigationTitle("Trending Movies")
-            .searchable(text: $search)
+            .searchable(text: $search, placement: .navigationBarDrawer(displayMode: .always))
+            .navigationBarBackButtonHidden(true)
+            .onReceive(moviesList.didReachMovie) { movie in
+                viewModel.didReachMovie(movie)
+            }
+            .onReceive(genresView.didTapGenre) { genre in
+                withAnimation {
+                    viewModel.didTapGenre(genre)
+                }
+            }
         }
     }
 }

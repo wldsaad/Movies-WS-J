@@ -23,6 +23,6 @@ struct MovieGenresDTOMapper {
     // MARK: - APIs
     
     func callAsFunction() -> MovieGenres {
-        response.genres?.compactMap { .init(id: $0.id, name: $0.name) } ?? []
+        response.genres?.filter { $0.id != nil }.compactMap { .init(id: $0.id!, name: $0.name) } ?? []
     }
 }
