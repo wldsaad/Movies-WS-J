@@ -12,6 +12,7 @@ class DefaultJsonDecoder: JSONDecoder {
     override init() {
         super.init()
         
+        allowsJSON5 = true
         keyDecodingStrategy = .convertFromSnakeCase
         dateDecodingStrategy = .formatted({
             let dateFormatter = DateFormatter()
