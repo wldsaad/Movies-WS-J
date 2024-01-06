@@ -14,7 +14,7 @@ struct TrendingMovieItemView: View {
     var body: some View {
         
         VStack(spacing: 0) {
-            AsyncImage(url: .init(string: movie.image)) { phase in
+            CacheAsyncImage(url: .init(string: movie.image)) { phase in
                 if let image = phase.image {
                     image
                         .resizable()
