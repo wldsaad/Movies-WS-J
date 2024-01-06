@@ -11,8 +11,6 @@ struct TrendingMoviesView<ViewModel: TrendingMoviesViewModelProtocol>: View {
     
     @ObservedObject var viewModel: ViewModel
     
-//    @State private var search = ""
-    
     init(viewModel: ViewModel) {
         let appearance = UINavigationBarAppearance()
         appearance.shadowColor = .clear
@@ -50,7 +48,6 @@ struct TrendingMoviesView<ViewModel: TrendingMoviesViewModelProtocol>: View {
                     }
                 }
             }
-            .navigationBarBackButtonHidden(true)
             .onReceive(moviesList.didReachMovie) { movie in
                 viewModel.didReachMovie(movie)
             }
@@ -58,6 +55,9 @@ struct TrendingMoviesView<ViewModel: TrendingMoviesViewModelProtocol>: View {
                 withAnimation {
                     viewModel.didTapGenre(genre)
                 }
+            }
+            .navigationDestination(for: Movie.self) { movie in
+                MovieDetailsView(movie: movie)
             }
         }
     }
