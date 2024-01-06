@@ -41,6 +41,15 @@ struct TrendingMoviesView<ViewModel: TrendingMoviesViewModelProtocol>: View {
             }
             .navigationTitle("Trending Movies")
             .searchable(text: $viewModel.searchValue, placement: .navigationBarDrawer(displayMode: .always))
+            .overlay {
+                if viewModel.movies.isEmpty, viewModel.moviesRequestStatus != .loading {
+                    if viewModel.searchValue.isEmpty {
+                        ContentUnavailableView("No movies", systemImage: "film", description: Text("Check selected genres"))
+                    } else {
+                        ContentUnavailableView.search(text: viewModel.searchValue)
+                    }
+                }
+            }
             .navigationBarBackButtonHidden(true)
             .onReceive(moviesList.didReachMovie) { movie in
                 viewModel.didReachMovie(movie)
