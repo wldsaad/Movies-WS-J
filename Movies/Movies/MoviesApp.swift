@@ -25,12 +25,39 @@ struct MoviesApp: App {
         }
     }()
 
+    init() {
+        let appearance = UINavigationBarAppearance()
+        appearance.shadowColor = .clear
+        UINavigationBar.appearance().standardAppearance = appearance
+        UINavigationBar.appearance().scrollEdgeAppearance = appearance
+        UINavigationBar.appearance().compactAppearance = appearance
+        UINavigationBar.appearance().compactScrollEdgeAppearance = appearance
+    }
+    
     var body: some Scene {
         WindowGroup {
-            TrendingMoviesView<TrendingMoviesViewModel>(
-                viewModel: TrendingMoviesViewModelFactory().viewModel
-            )
+            NavigationStack {
+                TrendingMoviesView<TrendingMoviesViewModel>(
+                    viewModel: TrendingMoviesViewModelFactory().viewModel
+                )
+                .navigationDestination(for: Movie.self) { movie in
+                    MovieDetailsView(viewModel: MovieDetailsViewModelFactory().viewModel(movieId: movie.movieId))
+                }
+            }
         }
         .modelContainer(sharedModelContainer)
+    }
+}
+
+extension UINavigationController: UINavigationControllerDelegate {
+
+    open override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        delegate = self
+    }
+    
+    public func navigationController(_ navigationController: UINavigationController, willShow viewController: UIViewController, animated: Bool) {
+        viewController.navigationItem.backButtonTitle = " "
     }
 }
