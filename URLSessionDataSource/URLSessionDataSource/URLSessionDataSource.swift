@@ -14,7 +14,19 @@ public struct URLSessionDataSource {
     public init() {}
     
     public func getData<Value: Codable>(urlRequest: URLRequest) async throws -> Value {
-        let (data, _) = try await urlSession.data(for: urlRequest)
-        return try DefaultJsonDecoder().decode(Value.self, from: data)
+        let (data, response) = try await urlSession.data(for: urlRequest)
+        let statusCode = (response as? HTTPURLResponse)?.statusCode
+        if statusCode?.isSuccessUrlStatusCode ?? false {
+            return try DefaultJsonDecoder().decode(Value.self, from: data)
+        } else {
+            throw NSError(domain: urlRequest.url?.absoluteString ?? "", code: statusCode ?? -1001)
+        }
+    }
+}
+
+extension Int {
+    
+    var isSuccessUrlStatusCode: Bool {
+        (200..<300) ~= self
     }
 }
