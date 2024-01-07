@@ -10,7 +10,7 @@ import Combine
 
 struct TrendingMoviesListView: View {
     
-    var movies: [Movie]
+    @Binding var movies: [Movie]
     
     var didReachMovie = PassthroughSubject<Movie, Never>()
         

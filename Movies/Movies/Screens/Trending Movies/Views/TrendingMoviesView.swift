@@ -11,13 +11,15 @@ struct TrendingMoviesView<ViewModel: TrendingMoviesViewModelProtocol>: View {
     
     @ObservedObject var viewModel: ViewModel
     
+    @State private var listId = Date()
+        
     init(viewModel: ViewModel) {
         _viewModel = ObservedObject(wrappedValue: viewModel)
     }
         
     var body: some View {
-        let genresView = MovieGenresListView(genres: viewModel.genres)
-        let moviesList = TrendingMoviesListView(movies: viewModel.movies)
+        let genresView = MovieGenresListView(genres: $viewModel.genres)
+        let moviesList = TrendingMoviesListView(movies: $viewModel.movies)
 
         ScrollView {
             LazyVStack(pinnedViews: [.sectionHeaders]) {
@@ -29,6 +31,7 @@ struct TrendingMoviesView<ViewModel: TrendingMoviesViewModelProtocol>: View {
                 }
             }
         }
+        .id(listId)
         .navigationTitle("Trending Movies")
         .searchable(text: $viewModel.searchValue, placement: .navigationBarDrawer(displayMode: .always))
         .overlay {
@@ -46,6 +49,7 @@ struct TrendingMoviesView<ViewModel: TrendingMoviesViewModelProtocol>: View {
         .onReceive(genresView.didTapGenre) { genre in
             withAnimation {
                 viewModel.didTapGenre(genre)
+                listId = Date()
             }
         }
     }
