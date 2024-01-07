@@ -14,7 +14,8 @@ struct MoviesApp: App {
     var sharedModelContainer: ModelContainer = {
         let schema = Schema([
             Movie.self,
-            Genre.self
+            Genre.self,
+            MovieDetails.self
         ])
         let modelConfiguration = ModelConfiguration(schema: schema, isStoredInMemoryOnly: false)
 

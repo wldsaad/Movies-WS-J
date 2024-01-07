@@ -17,7 +17,7 @@ final class Movie: Equatable, Hashable, Identifiable {
     let id = UUID()
     let movieId: Int
     let title: String
-    let image: String
+    let thumbnail: String
     let releaseDate: String
     let genreIds: [Int]
     
@@ -26,7 +26,7 @@ final class Movie: Equatable, Hashable, Identifiable {
     init(movieId: Int, title: String, image: String, releaseDate: String, genreIds: [Int]) {
         self.movieId = movieId
         self.title = title
-        self.image = image
+        self.thumbnail = image
         self.releaseDate = releaseDate
         self.genreIds = genreIds
     }
@@ -34,7 +34,7 @@ final class Movie: Equatable, Hashable, Identifiable {
     init(movie: TrendingMovie) {
         movieId = movie.id
         title = movie.title ?? ""
-        image = movie.image ?? ""
+        thumbnail = movie.thumbnail ?? ""
         releaseDate = {
             if let releaseDate = movie.releaseDate {
                 let formatter = DateFormatter()

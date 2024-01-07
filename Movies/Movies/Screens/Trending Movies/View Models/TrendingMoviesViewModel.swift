@@ -17,9 +17,9 @@ protocol TrendingMoviesViewModelProtocol: ObservableObject {
     
     var searchValue: String { get set }
     
-    var movies: [Movie] { get }
+    var movies: [Movie] { get set }
     
-    var genres: [Genre] { get }
+    var genres: [Genre] { get set }
     
     func didTapGenre(_ genre: Genre)
     
