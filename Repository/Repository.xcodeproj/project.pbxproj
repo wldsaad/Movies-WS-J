@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9AAE4E0A2B49EA2300294242 /* MovieDetailsRepositoryImplementation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AAE4E092B49EA2300294242 /* MovieDetailsRepositoryImplementation.swift */; };
+		9AAE4E0C2B49EA6100294242 /* MovieDetailsApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AAE4E0B2B49EA6100294242 /* MovieDetailsApi.swift */; };
+		9AAE4E0E2B49EAF900294242 /* MovieDetailsResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AAE4E0D2B49EAF900294242 /* MovieDetailsResponse.swift */; };
+		9AAE4E102B49EEEC00294242 /* MovieDetailsDTOMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AAE4E0F2B49EEEC00294242 /* MovieDetailsDTOMapper.swift */; };
+		9AAE4E162B49F49800294242 /* ImagePathFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AAE4E152B49F49800294242 /* ImagePathFactory.swift */; };
 		9AFA3EAF2B474ECA001546EB /* Repository.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AFA3EA62B474ECA001546EB /* Repository.framework */; };
 		9AFA3EB42B474ECA001546EB /* RepositoryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AFA3EB32B474ECA001546EB /* RepositoryTests.swift */; };
 		9AFA3EB52B474ECA001546EB /* Repository.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AFA3EA92B474ECA001546EB /* Repository.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -60,6 +65,11 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		9AAE4E092B49EA2300294242 /* MovieDetailsRepositoryImplementation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDetailsRepositoryImplementation.swift; sourceTree = "<group>"; };
+		9AAE4E0B2B49EA6100294242 /* MovieDetailsApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDetailsApi.swift; sourceTree = "<group>"; };
+		9AAE4E0D2B49EAF900294242 /* MovieDetailsResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDetailsResponse.swift; sourceTree = "<group>"; };
+		9AAE4E0F2B49EEEC00294242 /* MovieDetailsDTOMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDetailsDTOMapper.swift; sourceTree = "<group>"; };
+		9AAE4E152B49F49800294242 /* ImagePathFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePathFactory.swift; sourceTree = "<group>"; };
 		9AFA3EA62B474ECA001546EB /* Repository.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Repository.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9AFA3EA92B474ECA001546EB /* Repository.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Repository.h; sourceTree = "<group>"; };
 		9AFA3EAE2B474ECA001546EB /* RepositoryTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RepositoryTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -157,6 +167,7 @@
 				9AFA3EC92B474FAF001546EB /* APIRequest.swift */,
 				9AFA3F272B4793DC001546EB /* TrendingMoviesApi.swift */,
 				9AFA3F4A2B48DEE5001546EB /* MovieGenresApi.swift */,
+				9AAE4E0B2B49EA6100294242 /* MovieDetailsApi.swift */,
 			);
 			path = APIs;
 			sourceTree = "<group>";
@@ -203,6 +214,7 @@
 			children = (
 				9AFA3F222B47854A001546EB /* DefaultTrendingMoviesRepository.swift */,
 				9AFA3F4C2B48E02E001546EB /* MovieGenresRepositoryImplementation.swift */,
+				9AAE4E092B49EA2300294242 /* MovieDetailsRepositoryImplementation.swift */,
 			);
 			path = RepositoryImplementations;
 			sourceTree = "<group>";
@@ -212,6 +224,7 @@
 			children = (
 				9AFA3F2B2B47A0CF001546EB /* TrendingMoviesResponse.swift */,
 				9AFA3F482B48DE8C001546EB /* MovieGenresResponse.swift */,
+				9AAE4E0D2B49EAF900294242 /* MovieDetailsResponse.swift */,
 			);
 			path = DTO;
 			sourceTree = "<group>";
@@ -221,6 +234,8 @@
 			children = (
 				9AFA3F302B47A2A3001546EB /* TrendingMoviesDTOMapper.swift */,
 				9AFA3F4E2B48E0AE001546EB /* MovieGenresDTOMapper.swift */,
+				9AAE4E0F2B49EEEC00294242 /* MovieDetailsDTOMapper.swift */,
+				9AAE4E152B49F49800294242 /* ImagePathFactory.swift */,
 			);
 			path = Mappers;
 			sourceTree = "<group>";
@@ -336,19 +351,24 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9AAE4E162B49F49800294242 /* ImagePathFactory.swift in Sources */,
 				9AFA3F2C2B47A0CF001546EB /* TrendingMoviesResponse.swift in Sources */,
 				9AFA3EDB2B47515B001546EB /* DefaultCacheRepository.swift in Sources */,
 				9AFA3F312B47A2A3001546EB /* TrendingMoviesDTOMapper.swift in Sources */,
 				9AFA3ECC2B47506A001546EB /* DefaultRepository.swift in Sources */,
+				9AAE4E0A2B49EA2300294242 /* MovieDetailsRepositoryImplementation.swift in Sources */,
 				9AFA3ED32B4750D3001546EB /* RemoteDataSource.swift in Sources */,
 				9AFA3F4F2B48E0AE001546EB /* MovieGenresDTOMapper.swift in Sources */,
 				9AFA3ED92B47512A001546EB /* DefaultLocalDataSource.swift in Sources */,
 				9AFA3F232B47854A001546EB /* DefaultTrendingMoviesRepository.swift in Sources */,
 				9AFA3ED52B4750E8001546EB /* DefaultRemoteDataSource.swift in Sources */,
+				9AAE4E102B49EEEC00294242 /* MovieDetailsDTOMapper.swift in Sources */,
 				9AFA3ED72B47511A001546EB /* LocalDataSource.swift in Sources */,
 				9AFA3ECA2B474FAF001546EB /* APIRequest.swift in Sources */,
+				9AAE4E0C2B49EA6100294242 /* MovieDetailsApi.swift in Sources */,
 				9AFA3F492B48DE8C001546EB /* MovieGenresResponse.swift in Sources */,
 				9AFA3ED12B4750BB001546EB /* DataSource.swift in Sources */,
+				9AAE4E0E2B49EAF900294242 /* MovieDetailsResponse.swift in Sources */,
 				9AFA3EDD2B475176001546EB /* CachePolicy.swift in Sources */,
 				9AFA3F4B2B48DEE5001546EB /* MovieGenresApi.swift in Sources */,
 				9AFA3F4D2B48E02E001546EB /* MovieGenresRepositoryImplementation.swift in Sources */,

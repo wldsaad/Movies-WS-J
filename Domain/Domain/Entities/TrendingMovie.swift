@@ -23,14 +23,14 @@ public struct TrendingMovie {
     
     public let id: Int
     public let title: String?
-    public let image: String?
+    public let thumbnail: String?
     public let releaseDate: Date?
     public let genreIds: [Int]?
 
-    public init(id: Int, title: String?, image: String?, releaseDate: Date?, genreIds: [Int]?) {
+    public init(id: Int, title: String?, thumbnail: String?, releaseDate: Date?, genreIds: [Int]?) {
         self.id = id
         self.title = title
-        self.image = image
+        self.thumbnail = thumbnail
         self.releaseDate = releaseDate
         self.genreIds = genreIds
     }
