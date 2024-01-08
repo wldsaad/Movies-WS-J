@@ -7,11 +7,13 @@
 
 import Foundation
 import Domain
+import SwiftData
 import Repository
 
 struct TrendingMoviesViewModelFactory {
     
-    var viewModel: TrendingMoviesViewModel {
+    @MainActor
+    func viewModel() -> TrendingMoviesViewModel {
         let repository = DefaultRepository.shared.repository
         let genresRepository: MovieGenresRepository = MovieGenresRepositoryImplementation(repository: repository)
         let trendingRepository: TrendingMoviesRepository = DefaultTrendingMoviesRepository(repository: DefaultRepository.shared.repository)
