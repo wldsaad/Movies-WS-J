@@ -23,7 +23,7 @@ public struct MovieGenresRepositoryImplementation: MovieGenresRepository {
     // MARK: - APIs
     
     mutating public func execute() async throws -> MovieGenres {
-        let response: MovieGenresResponse = try await repository.getData(api: MovieGenresApi(), cachePolicy: .never)
+        let response: MovieGenresResponse = try await repository.getData(api: MovieGenresApi())
         return MovieGenresDTOMapper(response: response)()
     }
 }

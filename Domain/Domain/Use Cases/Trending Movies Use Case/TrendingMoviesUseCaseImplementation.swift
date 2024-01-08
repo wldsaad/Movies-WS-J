@@ -1,5 +1,5 @@
 //
-//  DefaultTrendingMoviesUseCase.swift
+//  TrendingMoviesUseCaseImplementation.swift
 //  Domain
 //
 //  Created by Waleed Saad on 05/01/2024.
@@ -7,7 +7,7 @@
 
 import Foundation
 
-public struct DefaultTrendingMoviesUseCase: TrendingMoviesUseCase {
+public struct TrendingMoviesUseCaseImplementation: TrendingMoviesUseCase {
     
     // MARK: - Properties
     

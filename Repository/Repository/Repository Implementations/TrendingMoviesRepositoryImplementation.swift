@@ -1,5 +1,5 @@
 //
-//  DefaultTrendingMoviesRepository.swift
+//  TrendingMoviesRepositoryImplementation.swift
 //  Repository
 //
 //  Created by Waleed Saad on 05/01/2024.
@@ -8,7 +8,7 @@
 import Foundation
 import Domain
 
-public struct DefaultTrendingMoviesRepository: TrendingMoviesRepository {
+public struct TrendingMoviesRepositoryImplementation: TrendingMoviesRepository {
     
     // MARK: - Properties
     
@@ -24,7 +24,7 @@ public struct DefaultTrendingMoviesRepository: TrendingMoviesRepository {
     
     mutating public func execute(page: Int) async throws -> TrendingMovies {
         let api = TrendingMoviesApi(page: page)
-        let response: TrendingMoviesResponse = try await repository.getData(api: api, cachePolicy: .never)
+        let response: TrendingMoviesResponse = try await repository.getData(api: api)
         return TrendingMoviesDTOMapper(response: response)()
     }
 }

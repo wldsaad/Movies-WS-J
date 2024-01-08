@@ -1,5 +1,5 @@
 //
-//  DefaultRemoteDataSource.swift
+//  RemoteDataSource.swift
 //  Repository
 //
 //  Created by Waleed Saad on 04/01/2024.
@@ -8,7 +8,7 @@
 import Foundation
 import URLSessionDataSource
 
-public struct DefaultRemoteDataSource: RemoteDataSource {
+public struct RemoteDataSource: DataSource {
 
     // MARK: - Properties
     
