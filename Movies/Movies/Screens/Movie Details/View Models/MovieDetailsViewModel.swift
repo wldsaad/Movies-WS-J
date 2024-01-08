@@ -8,6 +8,7 @@
 import Foundation
 import Domain
 
+@MainActor
 protocol MovieDetailsViewModelProtocol: ObservableObject {
     
     var movie: MovieDetails? { get }
@@ -15,6 +16,7 @@ protocol MovieDetailsViewModelProtocol: ObservableObject {
     var moviesRequestStatus: RequestStatus { get }
 }
 
+@MainActor
 class MovieDetailsViewModelImplementation: MovieDetailsViewModelProtocol {
     
     // MARK: - Properties
@@ -43,14 +45,10 @@ class MovieDetailsViewModelImplementation: MovieDetailsViewModelProtocol {
         Task {
             do {
                 let response = try await movieDetailsUseCase.execute(id: movieId)
-                DispatchQueue.main.async { [weak self] in
-                    self?.movie = .init(movie: response)
-                    self?.moviesRequestStatus = .success
-                }
+                movie = .init(movie: response)
+                moviesRequestStatus = .success
             } catch {
-                DispatchQueue.main.async { [weak self] in
-                    self?.moviesRequestStatus = .failure
-                }
+                moviesRequestStatus = .failure
             }
         }
     }

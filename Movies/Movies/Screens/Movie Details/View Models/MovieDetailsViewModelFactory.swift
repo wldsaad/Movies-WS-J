@@ -11,6 +11,7 @@ import Repository
 
 struct MovieDetailsViewModelFactory {
     
+    @MainActor
     func viewModel(movieId: Int) -> MovieDetailsViewModelImplementation {
         let repository: MovieDetailsRepository = MovieDetailsRepositoryImplementation(repository: DefaultRepository.shared.repository)
         let movieDetailsUseCase: MovieDetailsUseCase = MovieDetailsUseCaseImplementation(repository: repository)
