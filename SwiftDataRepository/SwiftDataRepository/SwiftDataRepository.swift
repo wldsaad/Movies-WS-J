@@ -38,9 +38,9 @@ public final class SwiftDataRepository {
     
     // MARK: - APIs
     
-    public func getCached<T: PersistentModel>(sortBy sortDescriptors: [SortDescriptor<T>] = []) throws -> [T] {
+    public func getCached<T: PersistentModel>(predicate: Predicate<T>? = nil, sortBy sortDescriptors: [SortDescriptor<T>] = []) throws -> [T] {
         do {
-            let descriptor = FetchDescriptor<T>(sortBy: sortDescriptors)
+            let descriptor = FetchDescriptor<T>(predicate: predicate, sortBy: sortDescriptors)
             return try modelContext.fetch(descriptor)
         } catch {
             throw error

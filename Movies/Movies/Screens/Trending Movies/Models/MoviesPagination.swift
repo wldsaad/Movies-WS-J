@@ -10,7 +10,7 @@ import SwiftData
 import Domain
 
 @Model
-class MoviesPagination {
+final class MoviesPagination {
     
     // MARK: - Properties
     

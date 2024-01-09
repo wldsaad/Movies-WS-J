@@ -1,5 +1,5 @@
 //
-//  CacheAsyncImage.swift
+//  CacheAsyncImageView.swift
 //  Movies
 //
 //  Created by Waleed Saad on 06/01/2024.
@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct CacheAsyncImage<Content>: View where Content: View {
+struct CacheAsyncImageView<Content>: View where Content: View {
     
     private let url: URL?
     private let scale: CGFloat
@@ -28,7 +28,7 @@ struct CacheAsyncImage<Content>: View where Content: View {
     
     var body: some View {
         
-        if let cached = ImageCache[url] {
+        if let cached = ImageCacheUtility[url?.absoluteString ?? ""] {
             content(.success(cached))
         } else {
             AsyncImage(
@@ -41,25 +41,12 @@ struct CacheAsyncImage<Content>: View where Content: View {
         }
     }
     
+    @MainActor
     func cacheAndRender(phase: AsyncImagePhase) -> some View {
         if case .success(let image) = phase {
-            ImageCache[url] = image
+            ImageCacheUtility[url?.absoluteString ?? ""] = image
         }
         
         return content(phase)
-    }
-}
-
-fileprivate struct ImageCache {
-    
-    static private var cache: [URL?: Image] = [:]
-    
-    static subscript(url: URL?) -> Image? {
-        get {
-            ImageCache.cache[url]
-        }
-        set {
-            ImageCache.cache[url] = newValue
-        }
     }
 }

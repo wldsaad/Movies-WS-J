@@ -23,14 +23,15 @@ final class LocalDataContainer {
             Movie.self,
             Genre.self,
             MovieDetails.self,
-            MoviesPagination.self
+            MoviesPagination.self,
+            CachedImage.self
         ])
     }
     
     // MARK: - APIs
     
-    func getCached<T: PersistentModel>(sortBy sortDescriptors: [SortDescriptor<T>] = []) throws -> [T] {
-        try SwiftDataRepository.shared.getCached(sortBy: sortDescriptors)
+    func getCached<T: PersistentModel>(predicate: Predicate<T>? = nil, sortBy sortDescriptors: [SortDescriptor<T>] = []) throws -> [T] {
+        try SwiftDataRepository.shared.getCached(predicate: predicate, sortBy: sortDescriptors)
     }
     
     func insert<T: PersistentModel>(_ model: T) throws {

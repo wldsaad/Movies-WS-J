@@ -12,7 +12,7 @@ struct MoviePosterView: View {
     let url: String?
     
     var body: some View {
-        CacheAsyncImage(url: .init(string: url ?? "")) { phase in
+        CacheAsyncImageView(url: .init(string: url ?? "")) { phase in
             if let image = phase.image {
                 image
                     .resizable()
