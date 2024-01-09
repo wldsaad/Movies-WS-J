@@ -14,9 +14,12 @@ final class Genre {
     
     // MARK: - Properties
     
+    @Attribute(.unique)
     let id: Int
     let name: String
     var selected: Bool
+    
+    let createdAt = Date()
     
     // MARK: - Init
     
