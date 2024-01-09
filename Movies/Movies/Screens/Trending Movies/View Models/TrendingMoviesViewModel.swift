@@ -33,9 +33,9 @@ class TrendingMoviesViewModel: TrendingMoviesViewModelProtocol {
     
     // MARK: - Properties
     
-    var movies: [Movie] = []
+    @Published var movies: [Movie] = []
     
-    var genres: [Genre] = []
+    @Published var genres: [Genre] = []
     
     @Published var searchValue: String = ""
     
