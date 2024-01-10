@@ -20,18 +20,17 @@ struct TrendingMoviesView<ViewModel: TrendingMoviesViewModelProtocol>: View {
     var body: some View {
         let genresView = MovieGenresListView(genres: $viewModel.genres)
         let moviesList = TrendingMoviesListView(movies: $viewModel.movies)
-
-        ScrollView {
-            LazyVStack(pinnedViews: [.sectionHeaders]) {
-                Section {
-                    moviesList
-                } header: {
-                    genresView
-                        .background(.regularMaterial)
-                }
+        
+        ZStack(alignment: .top) {
+            ScrollView {
+                moviesList
+                    .id(viewModel.lastUpdatedDate)
             }
+            
+            genresView
+                .background(.regularMaterial)
         }
-        .id(viewModel.lastUpdatedDate)
+        
         .navigationTitle("Trending Movies")
         .searchable(text: $viewModel.searchValue, placement: .navigationBarDrawer(displayMode: .always))
         .overlay {
