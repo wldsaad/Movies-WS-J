@@ -23,6 +23,8 @@ protocol TrendingMoviesViewModelProtocol: ObservableObject {
     
     var genres: [Genre] { get set }
     
+    var lastUpdatedDate: Date { get }
+    
     func getCachedData() async throws
     
     func getGenres() async throws
@@ -49,6 +51,8 @@ class TrendingMoviesViewModel: TrendingMoviesViewModelProtocol {
     
     @Published var movieGenresRequestStatus: RequestStatus = .idle
     
+    @Published var lastUpdatedDate = Date()
+
     var allMovies: [Movie] = []
 
     var pagination = MoviesPagination(Pagination())
@@ -159,6 +163,8 @@ class TrendingMoviesViewModel: TrendingMoviesViewModelProtocol {
                 return searchPredicate && genrePredicate
             }
         }()
+        
+        lastUpdatedDate = Date()
     }
     
     // MARK: - Cache

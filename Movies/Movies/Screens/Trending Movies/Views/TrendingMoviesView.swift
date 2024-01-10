@@ -11,8 +11,6 @@ struct TrendingMoviesView<ViewModel: TrendingMoviesViewModelProtocol>: View {
     
     @ObservedObject var viewModel: ViewModel
     
-    @State private var listId = Date()
-
     @State private var didFinishSetup = false
     
     init(viewModel: ViewModel) {
@@ -33,7 +31,7 @@ struct TrendingMoviesView<ViewModel: TrendingMoviesViewModelProtocol>: View {
                 }
             }
         }
-        .id(listId)
+        .id(viewModel.lastUpdatedDate)
         .navigationTitle("Trending Movies")
         .searchable(text: $viewModel.searchValue, placement: .navigationBarDrawer(displayMode: .always))
         .overlay {
@@ -51,7 +49,6 @@ struct TrendingMoviesView<ViewModel: TrendingMoviesViewModelProtocol>: View {
         .onReceive(genresView.didTapGenre) { genre in
             withAnimation {
                 viewModel.didTapGenre(genre)
-                listId = Date()
             }
         }
         .onAppear {
