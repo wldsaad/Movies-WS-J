@@ -10,9 +10,11 @@ import SwiftData
 
 @main
 struct MoviesApp: App {
+    
     var sharedModelContainer: ModelContainer = {
         let schema = Schema([
-            Item.self,
+            Movie.self,
+            Genre.self
         ])
         let modelConfiguration = ModelConfiguration(schema: schema, isStoredInMemoryOnly: false)
 
@@ -25,7 +27,9 @@ struct MoviesApp: App {
 
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            TrendingMoviesView<TrendingMoviesViewModel>(
+                viewModel: TrendingMoviesViewModelFactory().viewModel
+            )
         }
         .modelContainer(sharedModelContainer)
     }

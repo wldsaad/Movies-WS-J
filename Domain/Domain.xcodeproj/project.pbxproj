@@ -10,6 +10,15 @@
 		9A4F4C392B46EC85008A4C27 /* Domain.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A4F4C302B46EC84008A4C27 /* Domain.framework */; };
 		9A4F4C3E2B46EC85008A4C27 /* DomainTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A4F4C3D2B46EC85008A4C27 /* DomainTests.swift */; };
 		9A4F4C3F2B46EC85008A4C27 /* Domain.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A4F4C332B46EC84008A4C27 /* Domain.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		9AFA3F1A2B478429001546EB /* TrendingMoviesUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AFA3F192B478429001546EB /* TrendingMoviesUseCase.swift */; };
+		9AFA3F1C2B478454001546EB /* TrendingMovie.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AFA3F1B2B478454001546EB /* TrendingMovie.swift */; };
+		9AFA3F1E2B4784E5001546EB /* DefaultTrendingMoviesUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AFA3F1D2B4784E5001546EB /* DefaultTrendingMoviesUseCase.swift */; };
+		9AFA3F202B47850A001546EB /* TrendingMoviesRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AFA3F1F2B47850A001546EB /* TrendingMoviesRepository.swift */; };
+		9AFA3F332B47A352001546EB /* Pagination.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AFA3F322B47A352001546EB /* Pagination.swift */; };
+		9AFA3F412B48DD73001546EB /* MovieGenresUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AFA3F402B48DD73001546EB /* MovieGenresUseCase.swift */; };
+		9AFA3F432B48DDCD001546EB /* MovieGenre.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AFA3F422B48DDCD001546EB /* MovieGenre.swift */; };
+		9AFA3F452B48DE08001546EB /* DefaultMovieGenresUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AFA3F442B48DE08001546EB /* DefaultMovieGenresUseCase.swift */; };
+		9AFA3F472B48DE31001546EB /* MovieGenresRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AFA3F462B48DE31001546EB /* MovieGenresRepository.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -27,6 +36,15 @@
 		9A4F4C332B46EC84008A4C27 /* Domain.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Domain.h; sourceTree = "<group>"; };
 		9A4F4C382B46EC85008A4C27 /* DomainTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DomainTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		9A4F4C3D2B46EC85008A4C27 /* DomainTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DomainTests.swift; sourceTree = "<group>"; };
+		9AFA3F192B478429001546EB /* TrendingMoviesUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrendingMoviesUseCase.swift; sourceTree = "<group>"; };
+		9AFA3F1B2B478454001546EB /* TrendingMovie.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrendingMovie.swift; sourceTree = "<group>"; };
+		9AFA3F1D2B4784E5001546EB /* DefaultTrendingMoviesUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultTrendingMoviesUseCase.swift; sourceTree = "<group>"; };
+		9AFA3F1F2B47850A001546EB /* TrendingMoviesRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrendingMoviesRepository.swift; sourceTree = "<group>"; };
+		9AFA3F322B47A352001546EB /* Pagination.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Pagination.swift; sourceTree = "<group>"; };
+		9AFA3F402B48DD73001546EB /* MovieGenresUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieGenresUseCase.swift; sourceTree = "<group>"; };
+		9AFA3F422B48DDCD001546EB /* MovieGenre.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieGenre.swift; sourceTree = "<group>"; };
+		9AFA3F442B48DE08001546EB /* DefaultMovieGenresUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultMovieGenresUseCase.swift; sourceTree = "<group>"; };
+		9AFA3F462B48DE31001546EB /* MovieGenresRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieGenresRepository.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -69,6 +87,9 @@
 		9A4F4C322B46EC84008A4C27 /* Domain */ = {
 			isa = PBXGroup;
 			children = (
+				9AFA3F162B4783E7001546EB /* Use Cases */,
+				9AFA3F172B4783EC001546EB /* Entities */,
+				9AFA3F182B4783F2001546EB /* Repositories */,
 				9A4F4C332B46EC84008A4C27 /* Domain.h */,
 			);
 			path = Domain;
@@ -80,6 +101,52 @@
 				9A4F4C3D2B46EC85008A4C27 /* DomainTests.swift */,
 			);
 			path = DomainTests;
+			sourceTree = "<group>";
+		};
+		9AFA3F162B4783E7001546EB /* Use Cases */ = {
+			isa = PBXGroup;
+			children = (
+				9AFA3F3F2B48DD5B001546EB /* Movie Genres Use Case */,
+				9AFA3F3E2B48DD3C001546EB /* Trending Movies Use Case */,
+			);
+			path = "Use Cases";
+			sourceTree = "<group>";
+		};
+		9AFA3F172B4783EC001546EB /* Entities */ = {
+			isa = PBXGroup;
+			children = (
+				9AFA3F1B2B478454001546EB /* TrendingMovie.swift */,
+				9AFA3F322B47A352001546EB /* Pagination.swift */,
+				9AFA3F422B48DDCD001546EB /* MovieGenre.swift */,
+			);
+			path = Entities;
+			sourceTree = "<group>";
+		};
+		9AFA3F182B4783F2001546EB /* Repositories */ = {
+			isa = PBXGroup;
+			children = (
+				9AFA3F1F2B47850A001546EB /* TrendingMoviesRepository.swift */,
+				9AFA3F462B48DE31001546EB /* MovieGenresRepository.swift */,
+			);
+			path = Repositories;
+			sourceTree = "<group>";
+		};
+		9AFA3F3E2B48DD3C001546EB /* Trending Movies Use Case */ = {
+			isa = PBXGroup;
+			children = (
+				9AFA3F192B478429001546EB /* TrendingMoviesUseCase.swift */,
+				9AFA3F1D2B4784E5001546EB /* DefaultTrendingMoviesUseCase.swift */,
+			);
+			path = "Trending Movies Use Case";
+			sourceTree = "<group>";
+		};
+		9AFA3F3F2B48DD5B001546EB /* Movie Genres Use Case */ = {
+			isa = PBXGroup;
+			children = (
+				9AFA3F402B48DD73001546EB /* MovieGenresUseCase.swift */,
+				9AFA3F442B48DE08001546EB /* DefaultMovieGenresUseCase.swift */,
+			);
+			path = "Movie Genres Use Case";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -144,6 +211,7 @@
 				TargetAttributes = {
 					9A4F4C2F2B46EC84008A4C27 = {
 						CreatedOnToolsVersion = 15.0;
+						LastSwiftMigration = 1500;
 					};
 					9A4F4C372B46EC85008A4C27 = {
 						CreatedOnToolsVersion = 15.0;
@@ -191,6 +259,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9AFA3F1E2B4784E5001546EB /* DefaultTrendingMoviesUseCase.swift in Sources */,
+				9AFA3F1A2B478429001546EB /* TrendingMoviesUseCase.swift in Sources */,
+				9AFA3F412B48DD73001546EB /* MovieGenresUseCase.swift in Sources */,
+				9AFA3F332B47A352001546EB /* Pagination.swift in Sources */,
+				9AFA3F452B48DE08001546EB /* DefaultMovieGenresUseCase.swift in Sources */,
+				9AFA3F1C2B478454001546EB /* TrendingMovie.swift in Sources */,
+				9AFA3F202B47850A001546EB /* TrendingMoviesRepository.swift in Sources */,
+				9AFA3F472B48DE31001546EB /* MovieGenresRepository.swift in Sources */,
+				9AFA3F432B48DDCD001546EB /* MovieGenre.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -341,6 +418,7 @@
 		9A4F4C432B46EC85008A4C27 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEFINES_MODULE = YES;
@@ -363,6 +441,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -371,6 +450,7 @@
 		9A4F4C442B46EC85008A4C27 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEFINES_MODULE = YES;
@@ -401,6 +481,7 @@
 		9A4F4C462B46EC85008A4C27 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -416,6 +497,7 @@
 		9A4F4C472B46EC85008A4C27 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				GENERATE_INFOPLIST_FILE = YES;
