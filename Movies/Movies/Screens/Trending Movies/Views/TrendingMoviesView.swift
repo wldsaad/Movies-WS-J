@@ -37,7 +37,7 @@ struct TrendingMoviesView<ViewModel: TrendingMoviesViewModelProtocol>: View {
         .overlay {
             if viewModel.movies.isEmpty, viewModel.moviesRequestStatus != .loading {
                 if viewModel.searchValue.isEmpty {
-                    ContentUnavailableView("No movies", systemImage: "film", description: Text("Check selected genres"))
+                    ContentUnavailableView("No movies", systemImage: "film")
                 } else {
                     ContentUnavailableView.search(text: viewModel.searchValue)
                 }
@@ -53,10 +53,4 @@ struct TrendingMoviesView<ViewModel: TrendingMoviesViewModelProtocol>: View {
             }
         }
     }
-}
-
-#Preview {
-    TrendingMoviesView<TrendingMoviesViewModel>(
-        viewModel: TrendingMoviesViewModelFactory().viewModel
-    )
 }

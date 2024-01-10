@@ -17,12 +17,12 @@
 		9AAE4E142B49F32D00294242 /* MovieDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AAE4E132B49F32D00294242 /* MovieDetails.swift */; };
 		9AFA3F1A2B478429001546EB /* TrendingMoviesUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AFA3F192B478429001546EB /* TrendingMoviesUseCase.swift */; };
 		9AFA3F1C2B478454001546EB /* TrendingMovie.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AFA3F1B2B478454001546EB /* TrendingMovie.swift */; };
-		9AFA3F1E2B4784E5001546EB /* DefaultTrendingMoviesUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AFA3F1D2B4784E5001546EB /* DefaultTrendingMoviesUseCase.swift */; };
+		9AFA3F1E2B4784E5001546EB /* TrendingMoviesUseCaseImplementation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AFA3F1D2B4784E5001546EB /* TrendingMoviesUseCaseImplementation.swift */; };
 		9AFA3F202B47850A001546EB /* TrendingMoviesRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AFA3F1F2B47850A001546EB /* TrendingMoviesRepository.swift */; };
 		9AFA3F332B47A352001546EB /* Pagination.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AFA3F322B47A352001546EB /* Pagination.swift */; };
 		9AFA3F412B48DD73001546EB /* MovieGenresUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AFA3F402B48DD73001546EB /* MovieGenresUseCase.swift */; };
 		9AFA3F432B48DDCD001546EB /* MovieGenre.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AFA3F422B48DDCD001546EB /* MovieGenre.swift */; };
-		9AFA3F452B48DE08001546EB /* DefaultMovieGenresUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AFA3F442B48DE08001546EB /* DefaultMovieGenresUseCase.swift */; };
+		9AFA3F452B48DE08001546EB /* MovieGenresUseCaseImplementation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AFA3F442B48DE08001546EB /* MovieGenresUseCaseImplementation.swift */; };
 		9AFA3F472B48DE31001546EB /* MovieGenresRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AFA3F462B48DE31001546EB /* MovieGenresRepository.swift */; };
 /* End PBXBuildFile section */
 
@@ -48,12 +48,12 @@
 		9AAE4E132B49F32D00294242 /* MovieDetails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDetails.swift; sourceTree = "<group>"; };
 		9AFA3F192B478429001546EB /* TrendingMoviesUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrendingMoviesUseCase.swift; sourceTree = "<group>"; };
 		9AFA3F1B2B478454001546EB /* TrendingMovie.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrendingMovie.swift; sourceTree = "<group>"; };
-		9AFA3F1D2B4784E5001546EB /* DefaultTrendingMoviesUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultTrendingMoviesUseCase.swift; sourceTree = "<group>"; };
+		9AFA3F1D2B4784E5001546EB /* TrendingMoviesUseCaseImplementation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrendingMoviesUseCaseImplementation.swift; sourceTree = "<group>"; };
 		9AFA3F1F2B47850A001546EB /* TrendingMoviesRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrendingMoviesRepository.swift; sourceTree = "<group>"; };
 		9AFA3F322B47A352001546EB /* Pagination.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Pagination.swift; sourceTree = "<group>"; };
 		9AFA3F402B48DD73001546EB /* MovieGenresUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieGenresUseCase.swift; sourceTree = "<group>"; };
 		9AFA3F422B48DDCD001546EB /* MovieGenre.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieGenre.swift; sourceTree = "<group>"; };
-		9AFA3F442B48DE08001546EB /* DefaultMovieGenresUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultMovieGenresUseCase.swift; sourceTree = "<group>"; };
+		9AFA3F442B48DE08001546EB /* MovieGenresUseCaseImplementation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieGenresUseCaseImplementation.swift; sourceTree = "<group>"; };
 		9AFA3F462B48DE31001546EB /* MovieGenresRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieGenresRepository.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -158,7 +158,7 @@
 			isa = PBXGroup;
 			children = (
 				9AFA3F192B478429001546EB /* TrendingMoviesUseCase.swift */,
-				9AFA3F1D2B4784E5001546EB /* DefaultTrendingMoviesUseCase.swift */,
+				9AFA3F1D2B4784E5001546EB /* TrendingMoviesUseCaseImplementation.swift */,
 			);
 			path = "Trending Movies Use Case";
 			sourceTree = "<group>";
@@ -167,7 +167,7 @@
 			isa = PBXGroup;
 			children = (
 				9AFA3F402B48DD73001546EB /* MovieGenresUseCase.swift */,
-				9AFA3F442B48DE08001546EB /* DefaultMovieGenresUseCase.swift */,
+				9AFA3F442B48DE08001546EB /* MovieGenresUseCaseImplementation.swift */,
 			);
 			path = "Movie Genres Use Case";
 			sourceTree = "<group>";
@@ -282,14 +282,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9AFA3F1E2B4784E5001546EB /* DefaultTrendingMoviesUseCase.swift in Sources */,
+				9AFA3F1E2B4784E5001546EB /* TrendingMoviesUseCaseImplementation.swift in Sources */,
 				9AAE4E142B49F32D00294242 /* MovieDetails.swift in Sources */,
 				9AAE4E122B49F1B200294242 /* SpokenLanguage.swift in Sources */,
 				9AAE4E082B49E9AD00294242 /* MovieDetailsRepository.swift in Sources */,
 				9AFA3F1A2B478429001546EB /* TrendingMoviesUseCase.swift in Sources */,
 				9AFA3F412B48DD73001546EB /* MovieGenresUseCase.swift in Sources */,
 				9AFA3F332B47A352001546EB /* Pagination.swift in Sources */,
-				9AFA3F452B48DE08001546EB /* DefaultMovieGenresUseCase.swift in Sources */,
+				9AFA3F452B48DE08001546EB /* MovieGenresUseCaseImplementation.swift in Sources */,
 				9AAE4E042B49E95A00294242 /* MovieDetailsUseCase.swift in Sources */,
 				9AFA3F1C2B478454001546EB /* TrendingMovie.swift in Sources */,
 				9AFA3F202B47850A001546EB /* TrendingMoviesRepository.swift in Sources */,

@@ -9,5 +9,5 @@ import Foundation
 
 public protocol Repository {
 
-    mutating func getData<Value: Codable>(api: APIRequest, cachePolicy: CachePolicy) async throws -> Value
+    mutating func getData<Value: Codable>(api: APIRequest) async throws -> Value
 }

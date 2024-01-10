@@ -10,21 +10,23 @@ import SwiftData
 import Domain
 
 @Model
-final class Movie: Equatable, Hashable, Identifiable {
+final class Movie: Equatable, Identifiable {
     
     // MARK: - Properties
     
-    let id = UUID()
-    let movieId: Int
+    @Attribute(.unique)
+    let id: Int
     let title: String
     let thumbnail: String
     let releaseDate: String
     let genreIds: [Int]
     
+    let createdAt = Date()
+    
     // MARK: - Init
     
-    init(movieId: Int, title: String, image: String, releaseDate: String, genreIds: [Int]) {
-        self.movieId = movieId
+    init(id: Int, title: String, image: String, releaseDate: String, genreIds: [Int]) {
+        self.id = id
         self.title = title
         self.thumbnail = image
         self.releaseDate = releaseDate
@@ -32,7 +34,7 @@ final class Movie: Equatable, Hashable, Identifiable {
     }
     
     init(movie: TrendingMovie) {
-        movieId = movie.id
+        id = movie.id
         title = movie.title ?? ""
         thumbnail = movie.thumbnail ?? ""
         releaseDate = {
@@ -45,13 +47,5 @@ final class Movie: Equatable, Hashable, Identifiable {
             return ""
         }()
         genreIds = movie.genreIds ?? []
-    }
-    
-    static func == (lhs: Movie, rhs: Movie) -> Bool {
-        lhs.id == rhs.id
-    }
-    
-    func hash(into hasher: inout Hasher) {
-        hasher.combine(id)
     }
 }

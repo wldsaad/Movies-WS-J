@@ -7,8 +7,10 @@
 
 import Foundation
 import Combine
+import SwiftData
 import Domain
 
+@MainActor
 protocol TrendingMoviesViewModelProtocol: ObservableObject {
     
     var moviesRequestStatus: RequestStatus { get }
@@ -26,6 +28,7 @@ protocol TrendingMoviesViewModelProtocol: ObservableObject {
     func didReachMovie(_ movie: Movie)
 }
 
+@MainActor
 class TrendingMoviesViewModel: TrendingMoviesViewModelProtocol {
     
     // MARK: - Properties
@@ -42,7 +45,7 @@ class TrendingMoviesViewModel: TrendingMoviesViewModelProtocol {
     
     private var allMovies: [Movie] = []
 
-    private var pagination = Pagination()
+    private var pagination = MoviesPagination(Pagination())
     
     private var trendingMoviesUseCase: TrendingMoviesUseCase
     
@@ -54,21 +57,8 @@ class TrendingMoviesViewModel: TrendingMoviesViewModelProtocol {
         genres.filter { $0.selected }.map { $0.id }
     }
     
-    private var filteredMovies: [Movie] {
-        let selectedGenreIds = Set(selectedGenreIds)
-        
-        if searchValue.isEmpty, selectedGenreIds.isEmpty { return allMovies }
-        
-        return allMovies.filter { movie in
-            let searchPredicate = searchValue.isEmpty ? true : movie.title.localizedStandardContains(searchValue)
-            let genrePredicate = selectedGenreIds.isEmpty ? true : !Set(selectedGenreIds).isDisjoint(with: Set(movie.genreIds))
-            
-            return searchPredicate && genrePredicate
-        }
-    }
-    
     private var searchValueCancellable = Set<AnyCancellable>()
-
+    
     // MARK: - Init
     
     init(
@@ -77,8 +67,9 @@ class TrendingMoviesViewModel: TrendingMoviesViewModelProtocol {
     ) {
         self.trendingMoviesUseCase = trendingMoviesUseCase
         self.movieGenresUseCase = movieGenresUseCase
+        getCachedData()
         getGenres()
-        getMovies()
+        getMovies(pagination: MoviesPagination(Pagination()))
         
         $searchValue
             .removeDuplicates()
@@ -100,52 +91,126 @@ class TrendingMoviesViewModel: TrendingMoviesViewModelProtocol {
         guard moviesRequestStatus != .loading,
               let index = movies.firstIndex(of: movie),
               index >= movies.endIndex - 1,
-              pagination.totalPages > pagination.page,
+              pagination.totalPages > pagination.currentPage,
               searchValue.isEmpty,
               selectedGenreIds.isEmpty else { return }
         
-        getMovies()
+        getMovies(pagination: pagination)
     }
-    
-    // MARK: - Methods
-    
+        
+    // MARK: - Network Requests
+
     private func getGenres() {
         movieGenresRequestStatus = .loading
         Task {
             do {
                 let response = try await movieGenresUseCase.execute()
-                DispatchQueue.main.async { [weak self] in
-                    self?.genres = response.map(Genre.init)
-                    self?.movieGenresRequestStatus = .success
-                }
+                genres = response.map(Genre.init)
+                movieGenresRequestStatus = .success
+                try cacheGenres()
             } catch {
-                DispatchQueue.main.async { [weak self] in
-                    self?.movieGenresRequestStatus = .failure
-                }
+                movieGenresRequestStatus = .failure
             }
         }
     }
-    
-    private func getMovies() {
+        
+    private func getMovies(pagination: MoviesPagination) {
         moviesRequestStatus = .loading
         Task {
             do {
-                let response = try await trendingMoviesUseCase.execute(page: pagination.page + 1)
-                self.pagination = response.pagination
-                DispatchQueue.main.async { [weak self] in
-                    self?.movies.append(contentsOf: response.movies.map(Movie.init))
-                    self?.allMovies = self?.movies ?? []
-                    self?.moviesRequestStatus = .success
+                let pageToRequest = pagination.currentPage + 1
+                let response = try await trendingMoviesUseCase.execute(page: pageToRequest)
+                let moviesResponse = response.movies.map(Movie.init)
+                if pageToRequest > 1 {
+                    movies.append(contentsOf: moviesResponse)
+                } else {
+                    movies = moviesResponse
                 }
+                allMovies = movies
+                moviesRequestStatus = .success
+                self.pagination = .init(response.pagination)
+                try cacheMovies()
+                try cachePagination()
             } catch {
-                DispatchQueue.main.async { [weak self] in
-                    self?.moviesRequestStatus = .failure
-                }
+                moviesRequestStatus = .failure
             }
         }
     }
     
+    // MARK: - Filter
+
     private func setFilteredMovies() {
-        movies = filteredMovies
+        movies = {
+            let selectedGenreIds = Set(selectedGenreIds)
+            
+            if searchValue.isEmpty, selectedGenreIds.isEmpty { return allMovies }
+            
+            return allMovies.filter { movie in
+                let searchPredicate = searchValue.isEmpty ? true : movie.title.localizedStandardContains(searchValue)
+                let genrePredicate = selectedGenreIds.isEmpty ? true : !Set(selectedGenreIds).isDisjoint(with: Set(movie.genreIds))
+                
+                return searchPredicate && genrePredicate
+            }
+        }()
+    }
+    
+    // MARK: - Cache
+    
+    private func getCachedData() {
+        do {
+            try getCachedGenres()
+            try getCachedMovies()
+            try getCachedPagination()
+        } catch {}
+    }
+    
+    private func getCachedGenres() throws {
+        do {
+            let cachedGenres: [Genre] = try LocalDataContainer.shared.getCached(sortBy: [
+                SortDescriptor(\.createdAt, order: .forward)
+            ])
+            genres = cachedGenres
+        } catch { throw error }
+    }
+    
+    private func getCachedMovies() throws {
+        do {
+            let cachedMovies: [Movie] = try LocalDataContainer.shared.getCached(sortBy: [
+                SortDescriptor(\.createdAt, order: .forward)
+            ])
+            movies = cachedMovies
+            allMovies = cachedMovies
+        } catch { throw error }
+    }
+    
+    private func getCachedPagination() throws {
+        do {
+            if let pagination: MoviesPagination = try LocalDataContainer.shared.getCached().last {
+                self.pagination = pagination
+            }
+        } catch { throw error }
+    }
+    
+    private func cacheMovies() throws {
+        let cachedMovies: [Movie] = try LocalDataContainer.shared.getCached()
+        let cachedMoviesDictionary = cachedMovies.reduce(into: [:]) { partialResult, movie in
+            partialResult[movie.id] = movie
+        }
+        let uniqueMovies = allMovies.filter { cachedMoviesDictionary[$0.id] == nil }
+        try LocalDataContainer.shared.insert(uniqueMovies)
+    }
+    
+    private func cachePagination() throws {
+        try LocalDataContainer.shared.deleteAll(MoviesPagination.self)
+        try LocalDataContainer.shared.insert(pagination)
+    }
+    
+    private func cacheGenres() throws {
+        let cachedGenres: [Genre] = try LocalDataContainer.shared.getCached()
+        let cachedGenresDictionary = cachedGenres.reduce(into: [:]) { partialResult, genre in
+            partialResult[genre.id] = genre
+        }
+        let uniqueGenres = genres.filter { cachedGenresDictionary[$0.id] == nil }
+        try LocalDataContainer.shared.insert(uniqueGenres)
     }
 }

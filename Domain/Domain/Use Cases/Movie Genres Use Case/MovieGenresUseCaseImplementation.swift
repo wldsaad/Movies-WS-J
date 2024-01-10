@@ -1,5 +1,5 @@
 //
-//  DefaultMovieGenresUseCase.swift
+//  MovieGenresUseCaseImplementation.swift
 //  Domain
 //
 //  Created by Waleed Saad on 06/01/2024.
@@ -7,7 +7,7 @@
 
 import Foundation
 
-public struct DefaultMovieGenresUseCase: MovieGenresUseCase {
+public struct MovieGenresUseCaseImplementation: MovieGenresUseCase {
     
     // MARK: - Properties
     

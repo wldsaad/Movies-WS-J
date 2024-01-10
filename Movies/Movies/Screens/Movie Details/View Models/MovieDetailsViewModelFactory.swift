@@ -13,7 +13,7 @@ struct MovieDetailsViewModelFactory {
     
     @MainActor
     func viewModel(movieId: Int) -> MovieDetailsViewModelImplementation {
-        let repository: MovieDetailsRepository = MovieDetailsRepositoryImplementation(repository: DefaultRepository.shared.repository)
+        let repository: MovieDetailsRepository = MovieDetailsRepositoryImplementation(repository: RepositoryImplementation.shared)
         let movieDetailsUseCase: MovieDetailsUseCase = MovieDetailsUseCaseImplementation(repository: repository)
         let viewModel = MovieDetailsViewModelImplementation(movieId: movieId, movieDetailsUseCase: movieDetailsUseCase)
         return viewModel

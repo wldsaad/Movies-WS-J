@@ -7,16 +7,17 @@
 
 import Foundation
 import Domain
+import SwiftData
 import Repository
 
 struct TrendingMoviesViewModelFactory {
     
-    var viewModel: TrendingMoviesViewModel {
-        let repository = DefaultRepository.shared.repository
-        let genresRepository: MovieGenresRepository = MovieGenresRepositoryImplementation(repository: repository)
-        let trendingRepository: TrendingMoviesRepository = DefaultTrendingMoviesRepository(repository: DefaultRepository.shared.repository)
-        let genresUseCase: MovieGenresUseCase = DefaultMovieGenresUseCase(repository: genresRepository)
-        let trendingUseCase: TrendingMoviesUseCase = DefaultTrendingMoviesUseCase(repository: trendingRepository)
+    @MainActor
+    func viewModel() -> TrendingMoviesViewModel {
+        let genresRepository: MovieGenresRepository = MovieGenresRepositoryImplementation(repository: RepositoryImplementation.shared)
+        let trendingRepository: TrendingMoviesRepository = TrendingMoviesRepositoryImplementation(repository: RepositoryImplementation.shared)
+        let genresUseCase: MovieGenresUseCase = MovieGenresUseCaseImplementation(repository: genresRepository)
+        let trendingUseCase: TrendingMoviesUseCase = TrendingMoviesUseCaseImplementation(repository: trendingRepository)
         return TrendingMoviesViewModel(trendingMoviesUseCase: trendingUseCase, movieGenresUseCase: genresUseCase)
     }
 }

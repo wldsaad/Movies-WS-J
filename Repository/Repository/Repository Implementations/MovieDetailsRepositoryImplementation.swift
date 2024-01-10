@@ -24,7 +24,7 @@ public struct MovieDetailsRepositoryImplementation: MovieDetailsRepository {
     
     mutating public func execute(id: Int) async throws -> MovieDetails {
         let api = MovieDetailsApi(id: id)
-        let response: MovieDetailsResponse = try await repository.getData(api: api, cachePolicy: .never)
+        let response: MovieDetailsResponse = try await repository.getData(api: api)
         return MovieDetailsDTOMapper(response: response)()
     }
 }
