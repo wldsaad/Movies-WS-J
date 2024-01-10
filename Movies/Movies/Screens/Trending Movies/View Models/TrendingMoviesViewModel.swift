@@ -97,12 +97,6 @@ class TrendingMoviesViewModel: TrendingMoviesViewModelProtocol {
         genres = response.map(Genre.init)
         movieGenresRequestStatus = .success
         try cacheGenres()
-//        do {
-//            
-//        } catch {
-//            movieGenresRequestStatus = .failure
-//            throw error
-//        }
     }
     
     func getMovies() async throws {
@@ -170,52 +164,35 @@ class TrendingMoviesViewModel: TrendingMoviesViewModelProtocol {
     // MARK: - Cache
     
     private func getCachedGenres() throws {
-        do {
-            let cachedGenres: [Genre] = try LocalDataContainer.shared.getCached(sortBy: [
-                SortDescriptor(\.createdAt, order: .forward)
-            ])
-            genres = cachedGenres
-        } catch { throw error }
+        let cachedGenres: [Genre] = try LocalDataContainer.shared.getCached(sortBy: [
+            SortDescriptor(\.createdAt, order: .forward)
+        ])
+        genres = cachedGenres
     }
     
     private func getCachedMovies() throws {
-        do {
-            let cachedMovies: [Movie] = try LocalDataContainer.shared.getCached(sortBy: [
-                SortDescriptor(\.createdAt, order: .forward)
-            ])
-            movies = cachedMovies
-            allMovies = cachedMovies
-        } catch { throw error }
+        let cachedMovies: [Movie] = try LocalDataContainer.shared.getCached(sortBy: [
+            SortDescriptor(\.createdAt, order: .forward)
+        ])
+        movies = cachedMovies
+        allMovies = cachedMovies
     }
     
     private func getCachedPagination() throws {
-        do {
-            if let pagination: MoviesPagination = try LocalDataContainer.shared.getCached().last {
-                self.pagination = pagination
-            }
-        } catch { throw error }
+        if let pagination: MoviesPagination = try LocalDataContainer.shared.getCached().last {
+            self.pagination = pagination
+        }
     }
     
     private func cacheMovies() throws {
-        let cachedMovies: [Movie] = try LocalDataContainer.shared.getCached()
-        let cachedMoviesDictionary = cachedMovies.reduce(into: [:]) { partialResult, movie in
-            partialResult[movie.id] = movie
-        }
-        let uniqueMovies = allMovies.filter { cachedMoviesDictionary[$0.id] == nil }
-        try LocalDataContainer.shared.insert(uniqueMovies)
+        try LocalDataContainer.shared.replaceAll(allMovies)
     }
     
     private func cachePagination() throws {
-        try LocalDataContainer.shared.deleteAll(MoviesPagination.self)
-        try LocalDataContainer.shared.insert(pagination)
+        try LocalDataContainer.shared.replaceAll([pagination])
     }
     
     private func cacheGenres() throws {
-        let cachedGenres: [Genre] = try LocalDataContainer.shared.getCached()
-        let cachedGenresDictionary = cachedGenres.reduce(into: [:]) { partialResult, genre in
-            partialResult[genre.id] = genre
-        }
-        let uniqueGenres = genres.filter { cachedGenresDictionary[$0.id] == nil }
-        try LocalDataContainer.shared.insert(uniqueGenres)
+        try LocalDataContainer.shared.replaceAll(genres)
     }
 }
