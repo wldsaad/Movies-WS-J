@@ -11,7 +11,7 @@ import XCTest
 @MainActor
 final class MovieDetailsTests: XCTestCase {
 
-    private var sut: MovieDetailsViewModelImplementation!
+    private var sut: MovieDetailsViewModel!
     
     override func setUpWithError() throws {
         sut = MockMovieDetailsViewModelFactory().viewModel(movieId: 1029575)

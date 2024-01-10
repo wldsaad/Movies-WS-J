@@ -12,10 +12,10 @@ import Repository
 struct MovieDetailsViewModelFactory {
     
     @MainActor
-    func viewModel(movieId: Int) -> MovieDetailsViewModelImplementation {
+    func viewModel(movieId: Int) -> MovieDetailsViewModel {
         let repository: MovieDetailsRepository = MovieDetailsRepositoryImplementation(repository: RepositoryImplementation.shared)
         let movieDetailsUseCase: MovieDetailsUseCase = MovieDetailsUseCaseImplementation(repository: repository)
-        let viewModel = MovieDetailsViewModelImplementation(movieId: movieId, movieDetailsUseCase: movieDetailsUseCase)
+        let viewModel = MovieDetailsViewModel(movieId: movieId, movieDetailsUseCase: movieDetailsUseCase)
         return viewModel
     }
 }

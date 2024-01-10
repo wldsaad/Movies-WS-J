@@ -19,7 +19,7 @@ protocol MovieDetailsViewModelProtocol: ObservableObject {
 }
 
 @MainActor
-class MovieDetailsViewModelImplementation: MovieDetailsViewModelProtocol {
+class MovieDetailsViewModel: MovieDetailsViewModelProtocol {
     
     // MARK: - Properties
     

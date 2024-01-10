@@ -14,9 +14,9 @@ import DataTransferObjects
 struct MockMovieDetailsViewModelFactory {
     
     @MainActor
-    func viewModel(movieId: Int) -> MovieDetailsViewModelImplementation {
+    func viewModel(movieId: Int) -> MovieDetailsViewModel {
         let movieDetailsUseCase: MovieDetailsUseCase = MockMovieDetailsUseCaseImplementation()
-        let viewModel = MovieDetailsViewModelImplementation(movieId: movieId, movieDetailsUseCase: movieDetailsUseCase)
+        let viewModel = MovieDetailsViewModel(movieId: movieId, movieDetailsUseCase: movieDetailsUseCase)
         return viewModel
     }
 }

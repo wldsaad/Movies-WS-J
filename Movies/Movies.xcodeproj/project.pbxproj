@@ -193,7 +193,6 @@
 			children = (
 				9AFA3F292B479575001546EB /* Info.plist */,
 				9A4F4BFA2B46EA88008A4C27 /* MoviesApp.swift */,
-				9AAE4E4E2B4C484100294242 /* LocalDataContainer.swift */,
 				9AFA3F092B4764D1001546EB /* Screens */,
 				9AFA3F3B2B48DA1A001546EB /* Utilities */,
 				9A4F4C002B46EA88008A4C27 /* Assets.xcassets */,
@@ -366,6 +365,7 @@
 			isa = PBXGroup;
 			children = (
 				9A5561C52B4CD7A0008C00C2 /* Image Caching */,
+				9AAE4E4E2B4C484100294242 /* LocalDataContainer.swift */,
 				9AAE4E1F2B4A474C00294242 /* MoviePosterView.swift */,
 				9A5286862B4F066100220E69 /* GenreTitleGenerator.swift */,
 				9A5286882B4F066F00220E69 /* SpokenLanguagesTitleGenerator.swift */,
