@@ -41,8 +41,10 @@ public extension APIRequest {
     
     var urlRequest: URLRequest {
         var url = baseURL.appending(path: path)
-        let queryItems = query?.compactMap { URLQueryItem(name: $0.key, value: $0.value) }
-        url.append(queryItems: queryItems ?? [])
+        if let queryItems = query?.compactMap({ URLQueryItem(name: $0.key, value: $0.value) }),
+           !queryItems.isEmpty {
+            url.append(queryItems: queryItems)
+        }
         var request = URLRequest(url: url)
         request.httpMethod = method.rawValue.uppercased()
         headers?.forEach { request.setValue($0.value, forHTTPHeaderField: $0.key) }

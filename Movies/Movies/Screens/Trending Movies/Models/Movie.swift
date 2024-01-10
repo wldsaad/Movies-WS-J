@@ -15,23 +15,26 @@ final class Movie: Equatable, Hashable, Identifiable {
     // MARK: - Properties
     
     let id = UUID()
+    let movieId: Int
     let title: String
-    let image: String
+    let thumbnail: String
     let releaseDate: String
     let genreIds: [Int]
     
     // MARK: - Init
     
-    init(title: String, image: String, releaseDate: String, genreIds: [Int]) {
+    init(movieId: Int, title: String, image: String, releaseDate: String, genreIds: [Int]) {
+        self.movieId = movieId
         self.title = title
-        self.image = image
+        self.thumbnail = image
         self.releaseDate = releaseDate
         self.genreIds = genreIds
     }
     
     init(movie: TrendingMovie) {
+        movieId = movie.id
         title = movie.title ?? ""
-        image = movie.image ?? ""
+        thumbnail = movie.thumbnail ?? ""
         releaseDate = {
             if let releaseDate = movie.releaseDate {
                 let formatter = DateFormatter()

@@ -14,19 +14,8 @@ struct TrendingMovieItemView: View {
     var body: some View {
         
         VStack(spacing: 0) {
-            CacheAsyncImage(url: .init(string: movie.image)) { phase in
-                if let image = phase.image {
-                    image
-                        .resizable()
-                } else if phase.error != nil {
-                    Image(systemName: "photo")
-                        .resizable()
-                        .aspectRatio(contentMode: .fit)
-                } else {
-                    ProgressView()
-                }
-            }
-            .frame(height: 200)
+            MoviePosterView(url:movie.thumbnail)
+                .frame(height: 200)
             
             Spacer()
             
@@ -40,6 +29,8 @@ struct TrendingMovieItemView: View {
                         .lineLimit(1)
                         .font(.caption2)
                 }
+                .multilineTextAlignment(.leading)
+                .foregroundStyle(Color.primary)
                 .minimumScaleFactor(0.5)
                 .layoutPriority(1)
                 
@@ -56,5 +47,5 @@ struct TrendingMovieItemView: View {
 }
 
 #Preview {
-    TrendingMovieItemView(movie: .init(title: "Fight Club", image: "https://picsum.photos/200", releaseDate: .init(), genreIds: []))
+    TrendingMovieItemView(movie: .init(movieId: 1, title: "Fight Club", image: "https://picsum.photos/200", releaseDate: .init(), genreIds: []))
 }

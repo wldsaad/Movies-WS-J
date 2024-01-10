@@ -10,8 +10,8 @@ import Combine
 
 struct MovieGenresListView: View {
     
-    var genres: [Genre]
-    
+    @Binding var genres: [Genre]
+        
     var didTapGenre = PassthroughSubject<Genre, Never>()
 
     var body: some View {
@@ -27,14 +27,4 @@ struct MovieGenresListView: View {
             .padding(4)
         }
     }
-}
-
-#Preview {
-    MovieGenresListView(genres: [
-        .init(id: 0, name: "Action", selected: false),
-        .init(id: 1, name: "Thriller", selected: true),
-        .init(id: 2, name: "Comedy", selected: false),
-        .init(id: 3, name: "Romance", selected: false),
-        .init(id: 4, name: "Fantasy", selected: false),
-    ])
 }
