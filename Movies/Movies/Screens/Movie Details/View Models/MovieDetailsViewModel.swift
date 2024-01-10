@@ -14,6 +14,8 @@ protocol MovieDetailsViewModelProtocol: ObservableObject {
     var movie: MovieDetails? { get }
     
     var moviesRequestStatus: RequestStatus { get }
+    
+    func getMovieDetails() async throws
 }
 
 @MainActor
@@ -34,22 +36,14 @@ class MovieDetailsViewModelImplementation: MovieDetailsViewModelProtocol {
     init(movieId: Int, movieDetailsUseCase: MovieDetailsUseCase) {
         self.movieId = movieId
         self.movieDetailsUseCase = movieDetailsUseCase
-        
-        getMovieDetails()
     }
     
-    // MARK: - Methods
+    // MARK: - APIs
     
-    private func getMovieDetails() {
+    func getMovieDetails() async throws {
         moviesRequestStatus = .loading
-        Task {
-            do {
-                let response = try await movieDetailsUseCase.execute(id: movieId)
-                movie = .init(movie: response)
-                moviesRequestStatus = .success
-            } catch {
-                moviesRequestStatus = .failure
-            }
-        }
+        let response = try await movieDetailsUseCase.execute(id: movieId)
+        movie = .init(movie: response)
+        moviesRequestStatus = .success
     }
 }

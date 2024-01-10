@@ -23,6 +23,12 @@ protocol TrendingMoviesViewModelProtocol: ObservableObject {
     
     var genres: [Genre] { get set }
     
+    func getCachedData() async throws
+    
+    func getGenres() async throws
+    
+    func getMovies() async throws
+    
     func didTapGenre(_ genre: Genre)
     
     func didReachMovie(_ movie: Movie)
@@ -43,21 +49,21 @@ class TrendingMoviesViewModel: TrendingMoviesViewModelProtocol {
     
     @Published var movieGenresRequestStatus: RequestStatus = .idle
     
-    private var allMovies: [Movie] = []
+    var allMovies: [Movie] = []
 
-    private var pagination = MoviesPagination(Pagination())
-    
-    private var trendingMoviesUseCase: TrendingMoviesUseCase
-    
-    private var movieGenresUseCase: MovieGenresUseCase
+    var pagination = MoviesPagination(Pagination())
 
-    private var isLoading = false
+    var isLoading = false
 
-    private var selectedGenreIds: [Int] {
+    var selectedGenreIds: [Int] {
         genres.filter { $0.selected }.map { $0.id }
     }
     
     private var searchValueCancellable = Set<AnyCancellable>()
+    
+    private var trendingMoviesUseCase: TrendingMoviesUseCase
+    
+    private var movieGenresUseCase: MovieGenresUseCase
     
     // MARK: - Init
     
@@ -67,9 +73,6 @@ class TrendingMoviesViewModel: TrendingMoviesViewModelProtocol {
     ) {
         self.trendingMoviesUseCase = trendingMoviesUseCase
         self.movieGenresUseCase = movieGenresUseCase
-        getCachedData()
-        getGenres()
-        getMovies(pagination: MoviesPagination(Pagination()))
         
         $searchValue
             .removeDuplicates()
@@ -81,6 +84,30 @@ class TrendingMoviesViewModel: TrendingMoviesViewModelProtocol {
     }
     
     // MARK: - APIs
+    
+    func getCachedData() async throws {
+        try getCachedGenres()
+        try getCachedMovies()
+        try getCachedPagination()
+    }
+    
+    func getGenres() async throws {
+        movieGenresRequestStatus = .loading
+        let response = try await movieGenresUseCase.execute()
+        genres = response.map(Genre.init)
+        movieGenresRequestStatus = .success
+        try cacheGenres()
+//        do {
+//            
+//        } catch {
+//            movieGenresRequestStatus = .failure
+//            throw error
+//        }
+    }
+    
+    func getMovies() async throws {
+        try await getMovies(pagination: MoviesPagination(Pagination()))
+    }
     
     func didTapGenre(_ genre: Genre) {
         genre.selected.toggle()
@@ -95,46 +122,32 @@ class TrendingMoviesViewModel: TrendingMoviesViewModelProtocol {
               searchValue.isEmpty,
               selectedGenreIds.isEmpty else { return }
         
-        getMovies(pagination: pagination)
-    }
-        
-    // MARK: - Network Requests
-
-    private func getGenres() {
-        movieGenresRequestStatus = .loading
         Task {
             do {
-                let response = try await movieGenresUseCase.execute()
-                genres = response.map(Genre.init)
-                movieGenresRequestStatus = .success
-                try cacheGenres()
+                try await getMovies(pagination: pagination)
             } catch {
                 movieGenresRequestStatus = .failure
             }
         }
     }
         
-    private func getMovies(pagination: MoviesPagination) {
+    // MARK: - Methods
+        
+    private func getMovies(pagination: MoviesPagination) async throws {
         moviesRequestStatus = .loading
-        Task {
-            do {
-                let pageToRequest = pagination.currentPage + 1
-                let response = try await trendingMoviesUseCase.execute(page: pageToRequest)
-                let moviesResponse = response.movies.map(Movie.init)
-                if pageToRequest > 1 {
-                    movies.append(contentsOf: moviesResponse)
-                } else {
-                    movies = moviesResponse
-                }
-                allMovies = movies
-                moviesRequestStatus = .success
-                self.pagination = .init(response.pagination)
-                try cacheMovies()
-                try cachePagination()
-            } catch {
-                moviesRequestStatus = .failure
-            }
+        let pageToRequest = pagination.currentPage + 1
+        let response = try await trendingMoviesUseCase.execute(page: pageToRequest)
+        let moviesResponse = response.movies.map(Movie.init)
+        if pageToRequest > 1 {
+            movies.append(contentsOf: moviesResponse)
+        } else {
+            movies = moviesResponse
         }
+        allMovies = movies
+        moviesRequestStatus = .success
+        self.pagination = .init(response.pagination)
+        try cacheMovies()
+        try cachePagination()
     }
     
     // MARK: - Filter
@@ -155,14 +168,6 @@ class TrendingMoviesViewModel: TrendingMoviesViewModelProtocol {
     }
     
     // MARK: - Cache
-    
-    private func getCachedData() {
-        do {
-            try getCachedGenres()
-            try getCachedMovies()
-            try getCachedPagination()
-        } catch {}
-    }
     
     private func getCachedGenres() throws {
         do {

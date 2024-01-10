@@ -1,15 +1,15 @@
 //
 //  ImagePathFactory.swift
-//  Repository
+//  DataTransferObjects
 //
-//  Created by Waleed Saad on 06/01/2024.
+//  Created by Waleed Saad on 10/01/2024.
 //
 
 import Foundation
 
-struct ImagePathFactory {
+public struct ImagePathFactory {
     
-    enum ImagePath {
+    public enum ImagePath {
         case thumbnail, poster
         
         var size: String {
@@ -20,7 +20,7 @@ struct ImagePathFactory {
         }
     }
     
-    func imagePath(_ path: String?, imagePath: ImagePath) -> String {
+    public func imagePath(_ path: String?, imagePath: ImagePath) -> String {
         guard let path, !path.isEmpty else { return "" }
         
         let base = "https://image.tmdb.org/t/p/"

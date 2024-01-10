@@ -1,14 +1,14 @@
 //
 //  TrendingMoviesDTOMapper.swift
-//  Repository
+//  DataTransferObjects
 //
-//  Created by Waleed Saad on 05/01/2024.
+//  Created by Waleed Saad on 10/01/2024.
 //
 
 import Foundation
 import Domain
 
-struct TrendingMoviesDTOMapper {
+public struct TrendingMoviesDTOMapper {
 
     // MARK: - Properties
     
@@ -16,13 +16,13 @@ struct TrendingMoviesDTOMapper {
     
     // MARK: - Init
     
-    init(response: TrendingMoviesResponse) {
+    public init(response: TrendingMoviesResponse) {
         self.response = response
     }
     
     // MARK: - APIs
     
-    func callAsFunction() -> TrendingMovies {
+    public func callAsFunction() -> TrendingMovies {
         let imagePathFactory = ImagePathFactory()
         
         let movies: [TrendingMovie] = response.results?.filter { $0.id != nil }.compactMap { .init(
@@ -38,3 +38,4 @@ struct TrendingMoviesDTOMapper {
         return .init(movies: movies, pagination: pagination)
     }
 }
+

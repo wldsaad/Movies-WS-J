@@ -15,6 +15,8 @@ struct MovieDetailsView<ViewModel: MovieDetailsViewModelProtocol>: View {
     
     @State private var scrollPosition: CGFloat = .zero
     
+    @State private var didFinishSetup = false
+
     private var movieTitle: AttributedString {
         var attributedString = AttributedString(viewModel.movie?.title ?? "")
         attributedString.font = .headline.bold()
@@ -59,6 +61,16 @@ struct MovieDetailsView<ViewModel: MovieDetailsViewModelProtocol>: View {
         .frame(maxWidth: .infinity, maxHeight: .infinity)
         .navigationBarTitleDisplayMode(.inline)
         .toolbarBackground(.hidden, for: .navigationBar)
+        .onAppear {
+            if !didFinishSetup {
+                Task {
+                    do {
+                        try await viewModel.getMovieDetails()
+                    } catch {}
+                }
+                didFinishSetup = true
+            }
+        }
     }
     
     @ViewBuilder

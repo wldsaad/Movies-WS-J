@@ -14,6 +14,12 @@
       location = "container:"
       name = "Data Sources">
       <FileRef
+         location = "group:DataTransferObjects/DataTransferObjects.xcodeproj">
+      </FileRef>
+      <FileRef
+         location = "group:MockDataSource/MockDataSource.xcodeproj">
+      </FileRef>
+      <FileRef
          location = "group:SwiftDataRepository/SwiftDataRepository.xcodeproj">
       </FileRef>
       <FileRef

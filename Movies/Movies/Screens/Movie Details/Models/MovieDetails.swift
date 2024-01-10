@@ -51,31 +51,13 @@ final class MovieDetails {
         overview = movie.overview ?? ""
         homepage = movie.homepage ?? ""
         status = movie.status ?? ""
+        genres = GenreTitleGenerator()(movie.genres)
+        spokenLanguages = SpokenLanguagesTitleGenerator()(movie.spokenLanguages)
+        runtime = RuntimeTitleGenerator()(movie.runtime)
+        releaseDate = ReleaseDateTitleGenerator()(movie.releaseDate)
         
-        genres = movie.genres?.compactMap { $0.name }.joined(separator: ", ") ?? ""
-        spokenLanguages = movie.spokenLanguages?.compactMap { $0.name }.joined(separator: ", ") ?? ""
-
-        let numberFormatter = NumberFormatter()
-        numberFormatter.numberStyle = .currency
-        numberFormatter.currencyCode = "USD"
-        numberFormatter.currencySymbol = "$"
-        budget = numberFormatter.string(for: movie.budget) ?? ""
-        revenue = numberFormatter.string(for: movie.revenue) ?? ""
-        
-        runtime = {
-            if let runtime = movie.runtime {
-                let formatter = DateComponentsFormatter()
-                formatter.allowedUnits = [.hour, .minute]
-                formatter.unitsStyle = .abbreviated
-                return formatter.string(from: runtime * 60) ?? ""
-            }
-            return ""
-        }()
-        
-        releaseDate = {
-            let month = movie.releaseDate?.formatted(Date.FormatStyle().month(.abbreviated))
-            let year = movie.releaseDate?.formatted(Date.FormatStyle().year())
-            return [month, year].compactMap { $0 }.joined(separator: " ")
-        }()
+        let moneyTitleGenerator = MoneyTitleGenerator()
+        budget = moneyTitleGenerator(movie.budget)
+        revenue = moneyTitleGenerator(movie.revenue)
     }
 }
