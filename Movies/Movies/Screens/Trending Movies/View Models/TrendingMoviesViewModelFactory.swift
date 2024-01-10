@@ -14,8 +14,8 @@ struct TrendingMoviesViewModelFactory {
     
     @MainActor
     func viewModel() -> TrendingMoviesViewModel {
-        let genresRepository: MovieGenresRepository = MovieGenresRepositoryImplementation(repository: RepositoryImplementation.shared)
-        let trendingRepository: TrendingMoviesRepository = TrendingMoviesRepositoryImplementation(repository: RepositoryImplementation.shared)
+        let genresRepository: MovieGenresRepository = MovieGenresRepositoryImplementation(repository: RemoteRepositoryImplementation.shared)
+        let trendingRepository: TrendingMoviesRepository = TrendingMoviesRepositoryImplementation(repository: RemoteRepositoryImplementation.shared)
         let genresUseCase: MovieGenresUseCase = MovieGenresUseCaseImplementation(repository: genresRepository)
         let trendingUseCase: TrendingMoviesUseCase = TrendingMoviesUseCaseImplementation(repository: trendingRepository)
         return TrendingMoviesViewModel(trendingMoviesUseCase: trendingUseCase, movieGenresUseCase: genresUseCase)

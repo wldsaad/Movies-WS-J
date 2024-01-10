@@ -13,11 +13,11 @@ public struct MovieGenresRepositoryImplementation: MovieGenresRepository {
     
     // MARK: - Properties
     
-    private var repository: Repository
+    private var repository: RemoteRepository
     
     // MARK: - Init
     
-    public init(repository: Repository) {
+    public init(repository: RemoteRepository) {
         self.repository = repository
     }
     

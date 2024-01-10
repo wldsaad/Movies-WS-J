@@ -14,9 +14,9 @@
 		9AFA3EAF2B474ECA001546EB /* Repository.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AFA3EA62B474ECA001546EB /* Repository.framework */; };
 		9AFA3EB42B474ECA001546EB /* RepositoryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AFA3EB32B474ECA001546EB /* RepositoryTests.swift */; };
 		9AFA3EB52B474ECA001546EB /* Repository.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AFA3EA92B474ECA001546EB /* Repository.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		9AFA3EBF2B474F5E001546EB /* Repository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AFA3EBE2B474F5E001546EB /* Repository.swift */; };
+		9AFA3EBF2B474F5E001546EB /* RemoteRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AFA3EBE2B474F5E001546EB /* RemoteRepository.swift */; };
 		9AFA3ECA2B474FAF001546EB /* APIRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AFA3EC92B474FAF001546EB /* APIRequest.swift */; };
-		9AFA3ECC2B47506A001546EB /* RepositoryImplementation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AFA3ECB2B47506A001546EB /* RepositoryImplementation.swift */; };
+		9AFA3ECC2B47506A001546EB /* RemoteRepositoryImplementation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AFA3ECB2B47506A001546EB /* RemoteRepositoryImplementation.swift */; };
 		9AFA3ED12B4750BB001546EB /* DataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AFA3ED02B4750BB001546EB /* DataSource.swift */; };
 		9AFA3ED52B4750E8001546EB /* RemoteDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AFA3ED42B4750E8001546EB /* RemoteDataSource.swift */; };
 		9AFA3F062B4762F4001546EB /* URLSessionDataSource.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AFA3F052B4762F4001546EB /* URLSessionDataSource.framework */; };
@@ -63,9 +63,9 @@
 		9AFA3EA92B474ECA001546EB /* Repository.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Repository.h; sourceTree = "<group>"; };
 		9AFA3EAE2B474ECA001546EB /* RepositoryTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RepositoryTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		9AFA3EB32B474ECA001546EB /* RepositoryTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositoryTests.swift; sourceTree = "<group>"; };
-		9AFA3EBE2B474F5E001546EB /* Repository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Repository.swift; sourceTree = "<group>"; };
+		9AFA3EBE2B474F5E001546EB /* RemoteRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteRepository.swift; sourceTree = "<group>"; };
 		9AFA3EC92B474FAF001546EB /* APIRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIRequest.swift; sourceTree = "<group>"; };
-		9AFA3ECB2B47506A001546EB /* RepositoryImplementation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositoryImplementation.swift; sourceTree = "<group>"; };
+		9AFA3ECB2B47506A001546EB /* RemoteRepositoryImplementation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteRepositoryImplementation.swift; sourceTree = "<group>"; };
 		9AFA3ED02B4750BB001546EB /* DataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataSource.swift; sourceTree = "<group>"; };
 		9AFA3ED42B4750E8001546EB /* RemoteDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteDataSource.swift; sourceTree = "<group>"; };
 		9AFA3F052B4762F4001546EB /* URLSessionDataSource.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = URLSessionDataSource.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -120,8 +120,8 @@
 		9AFA3EA82B474ECA001546EB /* Repository */ = {
 			isa = PBXGroup;
 			children = (
-				9AFA3EBE2B474F5E001546EB /* Repository.swift */,
-				9AFA3ECB2B47506A001546EB /* RepositoryImplementation.swift */,
+				9AFA3EBE2B474F5E001546EB /* RemoteRepository.swift */,
+				9AFA3ECB2B47506A001546EB /* RemoteRepositoryImplementation.swift */,
 				9AFA3ECD2B475092001546EB /* Data Sources */,
 				9AFA3F212B47852F001546EB /* Repository Implementations */,
 				9AFA3EC82B474FA4001546EB /* APIs */,
@@ -289,7 +289,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9AFA3ECC2B47506A001546EB /* RepositoryImplementation.swift in Sources */,
+				9AFA3ECC2B47506A001546EB /* RemoteRepositoryImplementation.swift in Sources */,
 				9AAE4E0A2B49EA2300294242 /* MovieDetailsRepositoryImplementation.swift in Sources */,
 				9AFA3F232B47854A001546EB /* TrendingMoviesRepositoryImplementation.swift in Sources */,
 				9AFA3ED52B4750E8001546EB /* RemoteDataSource.swift in Sources */,
@@ -299,7 +299,7 @@
 				9AFA3F4B2B48DEE5001546EB /* MovieGenresApi.swift in Sources */,
 				9AFA3F4D2B48E02E001546EB /* MovieGenresRepositoryImplementation.swift in Sources */,
 				9AFA3F282B4793DC001546EB /* TrendingMoviesApi.swift in Sources */,
-				9AFA3EBF2B474F5E001546EB /* Repository.swift in Sources */,
+				9AFA3EBF2B474F5E001546EB /* RemoteRepository.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
