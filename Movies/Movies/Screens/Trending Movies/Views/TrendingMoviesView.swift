@@ -12,7 +12,9 @@ struct TrendingMoviesView<ViewModel: TrendingMoviesViewModelProtocol>: View {
     @ObservedObject var viewModel: ViewModel
     
     @State private var listId = Date()
-        
+
+    @State private var didFinishSetup = false
+    
     init(viewModel: ViewModel) {
         _viewModel = ObservedObject(wrappedValue: viewModel)
     }
@@ -50,6 +52,18 @@ struct TrendingMoviesView<ViewModel: TrendingMoviesViewModelProtocol>: View {
             withAnimation {
                 viewModel.didTapGenre(genre)
                 listId = Date()
+            }
+        }
+        .onAppear {
+            if !didFinishSetup {
+                Task {
+                    do {
+                        try await viewModel.getCachedData()
+                        try await viewModel.getGenres()
+                        try await viewModel.getMovies()
+                    } catch {}
+                }
+                didFinishSetup = true
             }
         }
     }

@@ -1,14 +1,14 @@
 //
 //  MovieDetailsDTOMapper.swift
-//  Repository
+//  DataTransferObjects
 //
-//  Created by Waleed Saad on 06/01/2024.
+//  Created by Waleed Saad on 10/01/2024.
 //
 
 import Foundation
 import Domain
 
-struct MovieDetailsDTOMapper {
+public struct MovieDetailsDTOMapper {
     
     // MARK: - Properties
     
@@ -16,13 +16,13 @@ struct MovieDetailsDTOMapper {
     
     // MARK: - Init
     
-    init(response: MovieDetailsResponse) {
+    public init(response: MovieDetailsResponse) {
         self.response = response
     }
     
     // MARK: - APIs
     
-    func callAsFunction() -> MovieDetails {
+    public func callAsFunction() -> MovieDetails {
         let imagePathFactory = ImagePathFactory()
 
         return .init(

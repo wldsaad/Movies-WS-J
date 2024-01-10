@@ -1,0 +1,24 @@
+{
+  "configurations" : [
+    {
+      "id" : "4E9CB913-8598-4CE0-BF67-7AD569F1E727",
+      "name" : "Configuration 1",
+      "options" : {
+
+      }
+    }
+  ],
+  "defaultOptions" : {
+    "testTimeoutsEnabled" : true
+  },
+  "testTargets" : [
+    {
+      "target" : {
+        "containerPath" : "container:Movies.xcodeproj",
+        "identifier" : "9A5B0CD82B4E36720028E7DA",
+        "name" : "MoviesTests"
+      }
+    }
+  ],
+  "version" : 1
+}

@@ -1,14 +1,14 @@
 //
 //  MovieGenresDTOMapper.swift
-//  Repository
+//  DataTransferObjects
 //
-//  Created by Waleed Saad on 06/01/2024.
+//  Created by Waleed Saad on 10/01/2024.
 //
 
 import Foundation
 import Domain
 
-struct MovieGenresDTOMapper {
+public struct MovieGenresDTOMapper {
     
     // MARK: - Properties
     
@@ -16,13 +16,13 @@ struct MovieGenresDTOMapper {
     
     // MARK: - Init
     
-    init(response: MovieGenresResponse) {
+    public init(response: MovieGenresResponse) {
         self.response = response
     }
     
     // MARK: - APIs
     
-    func callAsFunction() -> MovieGenres {
+    public func callAsFunction() -> MovieGenres {
         response.genres?.filter { $0.id != nil }.compactMap { .init(id: $0.id!, name: $0.name) } ?? []
     }
 }
