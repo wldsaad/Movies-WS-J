@@ -51,11 +51,11 @@ public final class SwiftDataRepository {
         modelContext.insert(model)
     }
     
-    public func insert<T: PersistentModel>(_ models: [T]) throws {
-        try models.forEach { try insert($0) }
-    }
-    
-    public func deleteAll<T: PersistentModel>(_ model: T.Type) throws {
-        try modelContext.delete(model: model)
+    public func replaceAll<T: PersistentModel>(_ models: [T]) throws {
+        let current: [T] = try getCached()
+        current.forEach { modelContext.delete($0) }
+        try modelContext.save()
+        models.forEach { modelContext.insert($0) }
+        try modelContext.save()
     }
 }

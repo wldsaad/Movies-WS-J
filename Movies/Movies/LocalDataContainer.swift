@@ -38,11 +38,7 @@ final class LocalDataContainer {
         try SwiftDataRepository.shared.insert(model)
     }
     
-    func insert<T: PersistentModel>(_ models: [T]) throws {
-        try SwiftDataRepository.shared.insert(models)
-    }
-    
-    func deleteAll<T: PersistentModel>(_ model: T.Type) throws {
-        try SwiftDataRepository.shared.deleteAll(model)
+    func replaceAll<T: PersistentModel>(_ models: [T]) throws {
+        try SwiftDataRepository.shared.replaceAll(models)
     }
 }
