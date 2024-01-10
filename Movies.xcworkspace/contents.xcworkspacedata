@@ -4,4 +4,17 @@
    <FileRef
       location = "group:Movies/Movies.xcodeproj">
    </FileRef>
+   <FileRef
+      location = "group:Domain/Domain.xcodeproj">
+   </FileRef>
+   <FileRef
+      location = "group:Repository/Repository.xcodeproj">
+   </FileRef>
+   <Group
+      location = "container:"
+      name = "Data Sources">
+      <FileRef
+         location = "group:URLSessionDataSource/URLSessionDataSource.xcodeproj">
+      </FileRef>
+   </Group>
 </Workspace>
