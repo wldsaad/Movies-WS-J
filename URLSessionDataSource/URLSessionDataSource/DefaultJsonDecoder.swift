@@ -17,6 +17,7 @@ class DefaultJsonDecoder: JSONDecoder {
         dateDecodingStrategy = .formatted({
             let dateFormatter = DateFormatter()
             dateFormatter.dateFormat = "yyyy-MM-dd"
+            dateFormatter.isLenient = true
             return dateFormatter
         }())
     }
